@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Guru_Software">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Guru_Software.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
