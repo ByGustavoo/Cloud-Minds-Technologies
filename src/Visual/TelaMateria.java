@@ -4,6 +4,8 @@
  */
 package Visual;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gustavo
@@ -31,12 +33,13 @@ public class TelaMateria extends javax.swing.JFrame {
         CampoUsuarioTelaLogin3 = new javax.swing.JTextField();
         PainelTela1 = new javax.swing.JPanel();
         PainelRoxoParteCima1 = new javax.swing.JPanel();
-        imagemLogoBrancaTelaMateria = new javax.swing.JLabel();
-        textoNomeEmpresaTelaMateria = new javax.swing.JLabel();
-        subtituloEmpresaTelaMateria = new javax.swing.JLabel();
-        botaoSairTelaMateria = new javax.swing.JLabel();
+        BotaoVoltar = new javax.swing.JLabel();
+        imagemLogoBrancaTelaInicial = new javax.swing.JLabel();
+        textoNomeEmpresaTelaInicial = new javax.swing.JLabel();
+        subtituloEmpresaTelaInicial = new javax.swing.JLabel();
+        BotaoSair = new javax.swing.JLabel();
         TituloCurso = new javax.swing.JLabel();
-        CampoUsuarioTelaLogin4 = new javax.swing.JTextField();
+        CampoCurso = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         TituloMateria = new javax.swing.JLabel();
         CampoMateria = new javax.swing.JTextField();
@@ -51,11 +54,11 @@ public class TelaMateria extends javax.swing.JFrame {
         jSeparator9 = new javax.swing.JSeparator();
         TituloSemestre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        BotaoSalvar1 = new javax.swing.JButton();
-        BotaoSalvar2 = new javax.swing.JButton();
-        BotaoSalvar3 = new javax.swing.JButton();
-        BotaoSalvar5 = new javax.swing.JButton();
+        Tabela = new javax.swing.JTable();
+        BotaoSalvar = new javax.swing.JButton();
+        BotaoEditar = new javax.swing.JButton();
+        BotaoExcluir = new javax.swing.JButton();
+        BotaoLimpar = new javax.swing.JButton();
 
         BotaoSalvar4.setBackground(new java.awt.Color(153, 51, 255));
         BotaoSalvar4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -82,23 +85,31 @@ public class TelaMateria extends javax.swing.JFrame {
 
         PainelRoxoParteCima1.setBackground(new java.awt.Color(153, 51, 255));
 
-        imagemLogoBrancaTelaMateria.setBackground(new java.awt.Color(255, 255, 255));
-        imagemLogoBrancaTelaMateria.setForeground(new java.awt.Color(255, 255, 255));
-        imagemLogoBrancaTelaMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemLogoBrancaTelaInicial.png"))); // NOI18N
-
-        textoNomeEmpresaTelaMateria.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        textoNomeEmpresaTelaMateria.setForeground(new java.awt.Color(255, 255, 255));
-        textoNomeEmpresaTelaMateria.setText("Cloud Minds Technologies");
-
-        subtituloEmpresaTelaMateria.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        subtituloEmpresaTelaMateria.setForeground(new java.awt.Color(204, 204, 204));
-        subtituloEmpresaTelaMateria.setText("Construindo pontes para o futuro digital");
-
-        botaoSairTelaMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ImagemBotaoFecharTelaLogin.png"))); // NOI18N
-        botaoSairTelaMateria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botaoSairTelaMateria.addMouseListener(new java.awt.event.MouseAdapter() {
+        BotaoVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/BotaoVoltarBranco.png"))); // NOI18N
+        BotaoVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoSairTelaMateriaMouseClicked(evt);
+                BotaoVoltarMouseClicked(evt);
+            }
+        });
+
+        imagemLogoBrancaTelaInicial.setBackground(new java.awt.Color(255, 255, 255));
+        imagemLogoBrancaTelaInicial.setForeground(new java.awt.Color(255, 255, 255));
+        imagemLogoBrancaTelaInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemLogoBranca.png"))); // NOI18N
+
+        textoNomeEmpresaTelaInicial.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        textoNomeEmpresaTelaInicial.setForeground(new java.awt.Color(255, 255, 255));
+        textoNomeEmpresaTelaInicial.setText("Cloud Minds Technologies");
+
+        subtituloEmpresaTelaInicial.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        subtituloEmpresaTelaInicial.setForeground(new java.awt.Color(204, 204, 204));
+        subtituloEmpresaTelaInicial.setText("Construindo pontes para o futuro digital");
+
+        BotaoSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ImagemBotaoFechar.png"))); // NOI18N
+        BotaoSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotaoSairMouseClicked(evt);
             }
         });
 
@@ -107,34 +118,41 @@ public class TelaMateria extends javax.swing.JFrame {
         PainelRoxoParteCima1Layout.setHorizontalGroup(
             PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(imagemLogoBrancaTelaMateria)
+                .addContainerGap()
+                .addComponent(BotaoVoltar)
+                .addGap(27, 27, 27)
+                .addComponent(imagemLogoBrancaTelaInicial)
                 .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelRoxoParteCima1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotaoSair)
+                        .addGap(14, 14, 14))
                     .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(subtituloEmpresaTelaMateria)
-                            .addComponent(textoNomeEmpresaTelaMateria))
-                        .addContainerGap(484, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelRoxoParteCima1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoSairTelaMateria)
-                        .addGap(20, 20, 20))))
+                            .addComponent(subtituloEmpresaTelaInicial)
+                            .addComponent(textoNomeEmpresaTelaInicial))
+                        .addContainerGap(468, Short.MAX_VALUE))))
         );
         PainelRoxoParteCima1Layout.setVerticalGroup(
             PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelRoxoParteCima1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(botaoSairTelaMateria)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(textoNomeEmpresaTelaMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(subtituloEmpresaTelaMateria)
-                .addGap(67, 67, 67))
             .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(imagemLogoBrancaTelaMateria)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(textoNomeEmpresaTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(subtituloEmpresaTelaInicial))
+                            .addComponent(imagemLogoBrancaTelaInicial)))
+                    .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BotaoVoltar)
+                            .addComponent(BotaoSair))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         TituloCurso.setBackground(new java.awt.Color(153, 51, 255));
@@ -142,10 +160,10 @@ public class TelaMateria extends javax.swing.JFrame {
         TituloCurso.setForeground(new java.awt.Color(153, 51, 255));
         TituloCurso.setText("Curso");
 
-        CampoUsuarioTelaLogin4.setBackground(new java.awt.Color(255, 255, 255));
-        CampoUsuarioTelaLogin4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoUsuarioTelaLogin4.setForeground(new java.awt.Color(0, 0, 0));
-        CampoUsuarioTelaLogin4.setBorder(null);
+        CampoCurso.setBackground(new java.awt.Color(255, 255, 255));
+        CampoCurso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CampoCurso.setForeground(new java.awt.Color(153, 51, 255));
+        CampoCurso.setBorder(null);
 
         jSeparator5.setBackground(new java.awt.Color(153, 51, 255));
         jSeparator5.setForeground(new java.awt.Color(153, 51, 255));
@@ -157,7 +175,7 @@ public class TelaMateria extends javax.swing.JFrame {
 
         CampoMateria.setBackground(new java.awt.Color(255, 255, 255));
         CampoMateria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoMateria.setForeground(new java.awt.Color(0, 0, 0));
+        CampoMateria.setForeground(new java.awt.Color(153, 51, 255));
         CampoMateria.setBorder(null);
 
         jSeparator6.setBackground(new java.awt.Color(153, 51, 255));
@@ -170,7 +188,7 @@ public class TelaMateria extends javax.swing.JFrame {
 
         CampoPeriodo.setBackground(new java.awt.Color(255, 255, 255));
         CampoPeriodo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoPeriodo.setForeground(new java.awt.Color(0, 0, 0));
+        CampoPeriodo.setForeground(new java.awt.Color(153, 51, 255));
         CampoPeriodo.setBorder(null);
 
         jSeparator7.setBackground(new java.awt.Color(153, 51, 255));
@@ -183,7 +201,7 @@ public class TelaMateria extends javax.swing.JFrame {
 
         CampoCargaHoraria.setBackground(new java.awt.Color(255, 255, 255));
         CampoCargaHoraria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoCargaHoraria.setForeground(new java.awt.Color(0, 0, 0));
+        CampoCargaHoraria.setForeground(new java.awt.Color(153, 51, 255));
         CampoCargaHoraria.setBorder(null);
 
         jSeparator8.setBackground(new java.awt.Color(153, 51, 255));
@@ -191,7 +209,7 @@ public class TelaMateria extends javax.swing.JFrame {
 
         CampoSemestre.setBackground(new java.awt.Color(255, 255, 255));
         CampoSemestre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoSemestre.setForeground(new java.awt.Color(0, 0, 0));
+        CampoSemestre.setForeground(new java.awt.Color(153, 51, 255));
         CampoSemestre.setBorder(null);
 
         jSeparator9.setBackground(new java.awt.Color(153, 51, 255));
@@ -202,10 +220,10 @@ public class TelaMateria extends javax.swing.JFrame {
         TituloSemestre.setForeground(new java.awt.Color(153, 51, 255));
         TituloSemestre.setText("Semestre");
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela.setBackground(new java.awt.Color(255, 255, 255));
+        Tabela.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+        Tabela.setForeground(new java.awt.Color(255, 255, 255));
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -213,50 +231,52 @@ public class TelaMateria extends javax.swing.JFrame {
                 "Código", "Curso", "Matéria", "Período"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jScrollPane1.setViewportView(Tabela);
+        if (Tabela.getColumnModel().getColumnCount() > 0) {
+            Tabela.getColumnModel().getColumn(0).setPreferredWidth(50);
         }
 
-        BotaoSalvar1.setBackground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        BotaoSalvar1.setForeground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar1.setText("Salvar");
-        BotaoSalvar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
-        BotaoSalvar1.setContentAreaFilled(false);
-        BotaoSalvar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoSalvar.setBackground(new java.awt.Color(153, 51, 255));
+        BotaoSalvar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BotaoSalvar.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoSalvar.setText("Salvar");
+        BotaoSalvar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+        BotaoSalvar.setContentAreaFilled(false);
+        BotaoSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoSalvarActionPerformed(evt);
+            }
+        });
 
-        BotaoSalvar2.setBackground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        BotaoSalvar2.setForeground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar2.setText("Editar");
-        BotaoSalvar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
-        BotaoSalvar2.setContentAreaFilled(false);
-        BotaoSalvar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoEditar.setBackground(new java.awt.Color(153, 51, 255));
+        BotaoEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BotaoEditar.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoEditar.setText("Editar");
+        BotaoEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+        BotaoEditar.setContentAreaFilled(false);
+        BotaoEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        BotaoSalvar3.setBackground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        BotaoSalvar3.setForeground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar3.setText("Excluir");
-        BotaoSalvar3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
-        BotaoSalvar3.setContentAreaFilled(false);
-        BotaoSalvar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoExcluir.setBackground(new java.awt.Color(153, 51, 255));
+        BotaoExcluir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BotaoExcluir.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoExcluir.setText("Excluir");
+        BotaoExcluir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+        BotaoExcluir.setContentAreaFilled(false);
+        BotaoExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        BotaoSalvar5.setBackground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        BotaoSalvar5.setForeground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar5.setText("Limpar");
-        BotaoSalvar5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
-        BotaoSalvar5.setContentAreaFilled(false);
-        BotaoSalvar5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoLimpar.setBackground(new java.awt.Color(153, 51, 255));
+        BotaoLimpar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BotaoLimpar.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoLimpar.setText("Limpar");
+        BotaoLimpar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+        BotaoLimpar.setContentAreaFilled(false);
+        BotaoLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout PainelTela1Layout = new javax.swing.GroupLayout(PainelTela1);
         PainelTela1.setLayout(PainelTela1Layout);
         PainelTela1Layout.setHorizontalGroup(
             PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelTela1Layout.createSequentialGroup()
-                .addComponent(PainelRoxoParteCima1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -265,7 +285,7 @@ public class TelaMateria extends javax.swing.JFrame {
                     .addComponent(TituloPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TituloMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TituloCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CampoUsuarioTelaLogin4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CampoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
                         .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(CampoCargaHoraria, javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,17 +301,20 @@ public class TelaMateria extends javax.swing.JFrame {
                     .addComponent(jSeparator5)
                     .addComponent(CampoMateria)
                     .addComponent(CampoPeriodo)
-                    .addComponent(BotaoSalvar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BotaoSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addComponent(BotaoSalvar5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111)
-                        .addComponent(BotaoSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105)
-                        .addComponent(BotaoSalvar3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BotaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)
+                        .addComponent(BotaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100))
+                .addGap(99, 99, 99))
+            .addGroup(PainelTela1Layout.createSequentialGroup()
+                .addComponent(PainelRoxoParteCima1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 34, Short.MAX_VALUE))
         );
         PainelTela1Layout.setVerticalGroup(
             PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,7 +325,7 @@ public class TelaMateria extends javax.swing.JFrame {
                     .addGroup(PainelTela1Layout.createSequentialGroup()
                         .addComponent(TituloCurso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CampoUsuarioTelaLogin4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CampoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
@@ -332,10 +355,10 @@ public class TelaMateria extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(44, 44, 44)
                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotaoSalvar5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoSalvar3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BotaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -376,9 +399,30 @@ public class TelaMateria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoSairTelaMateriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoSairTelaMateriaMouseClicked
+    private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
+        if (CampoCurso.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o nome do Curso!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoMateria.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o nome da Matéria!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoPeriodo.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o Período!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoCargaHoraria.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite a Carga Horária!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoSemestre.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o Semestre!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Informações salvas com sucesso!", "Dados Enviados!", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_BotaoSalvarActionPerformed
+
+    private void BotaoVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoVoltarMouseClicked
+        new TelaInicial().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BotaoVoltarMouseClicked
+
+    private void BotaoSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoSairMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_botaoSairTelaMateriaMouseClicked
+    }//GEN-LAST:event_BotaoSairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -419,36 +463,37 @@ public class TelaMateria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotaoSalvar1;
-    private javax.swing.JButton BotaoSalvar2;
-    private javax.swing.JButton BotaoSalvar3;
+    private javax.swing.JButton BotaoEditar;
+    private javax.swing.JButton BotaoExcluir;
+    private javax.swing.JButton BotaoLimpar;
+    private javax.swing.JLabel BotaoSair;
+    private javax.swing.JButton BotaoSalvar;
     private javax.swing.JButton BotaoSalvar4;
-    private javax.swing.JButton BotaoSalvar5;
+    private javax.swing.JLabel BotaoVoltar;
     private javax.swing.JTextField CampoCargaHoraria;
+    private javax.swing.JTextField CampoCurso;
     private javax.swing.JTextField CampoMateria;
     private javax.swing.JTextField CampoPeriodo;
     private javax.swing.JTextField CampoSemestre;
     private javax.swing.JTextField CampoUsuarioTelaLogin3;
-    private javax.swing.JTextField CampoUsuarioTelaLogin4;
     private javax.swing.JPanel PainelPrincipal;
     private javax.swing.JPanel PainelRoxoParteCima1;
     private javax.swing.JPanel PainelTela;
     private javax.swing.JPanel PainelTela1;
+    private javax.swing.JTable Tabela;
     private javax.swing.JLabel TituloCargaHoraria;
     private javax.swing.JLabel TituloCurso;
     private javax.swing.JLabel TituloMateria;
     private javax.swing.JLabel TituloPeriodo;
     private javax.swing.JLabel TituloSemestre;
-    private javax.swing.JLabel botaoSairTelaMateria;
-    private javax.swing.JLabel imagemLogoBrancaTelaMateria;
+    private javax.swing.JLabel imagemLogoBrancaTelaInicial;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel subtituloEmpresaTelaMateria;
-    private javax.swing.JLabel textoNomeEmpresaTelaMateria;
+    private javax.swing.JLabel subtituloEmpresaTelaInicial;
+    private javax.swing.JLabel textoNomeEmpresaTelaInicial;
     // End of variables declaration//GEN-END:variables
 }
