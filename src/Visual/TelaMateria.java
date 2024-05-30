@@ -207,16 +207,16 @@ public class TelaMateria extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Curso", "Matéria", "Período"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+        }
 
         BotaoSalvar1.setBackground(new java.awt.Color(153, 51, 255));
         BotaoSalvar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
