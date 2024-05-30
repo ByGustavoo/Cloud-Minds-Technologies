@@ -1,7 +1,7 @@
 # ☁️ Cloud Minds Technologies
 
 
-## Projeto Integrador I
+## 🔹 Projeto Integrador I
 
 
 ## 🚀 Ferramentas utilizadas:
