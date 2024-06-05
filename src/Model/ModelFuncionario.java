@@ -15,15 +15,16 @@ public class ModelFuncionario {
     private int id;
     private String nome;
     private String cpf;
-    private int telefone;
+    private String telefone;
     private String endereco;
+    private String bairro;
+    private String complemento;
+    private int numero;
     private String login;
     private String senha;
     private int id_tipo_pessoa;
-    private int id_curso;
     private int id_situacao;
 
-    
     /**
      * @return the id
      */
@@ -31,7 +32,6 @@ public class ModelFuncionario {
         return id;
     }
 
-    
     /**
      * @param id the id to set
      */
@@ -39,7 +39,6 @@ public class ModelFuncionario {
         this.id = id;
     }
 
-    
     /**
      * @return the nome
      */
@@ -47,7 +46,6 @@ public class ModelFuncionario {
         return nome;
     }
 
-    
     /**
      * @param nome the nome to set
      */
@@ -55,7 +53,6 @@ public class ModelFuncionario {
         this.nome = nome;
     }
 
-    
     /**
      * @return the cpf
      */
@@ -63,7 +60,6 @@ public class ModelFuncionario {
         return cpf;
     }
 
-    
     /**
      * @param cpf the cpf to set
      */
@@ -71,23 +67,20 @@ public class ModelFuncionario {
         this.cpf = cpf;
     }
 
-    
     /**
      * @return the telefone
      */
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    
     /**
      * @return the endereco
      */
@@ -95,7 +88,6 @@ public class ModelFuncionario {
         return endereco;
     }
 
-    
     /**
      * @param endereco the endereco to set
      */
@@ -103,7 +95,48 @@ public class ModelFuncionario {
         this.endereco = endereco;
     }
 
-    
+    /**
+     * @return the bairro
+     */
+    public String getBairro() {
+        return bairro;
+    }
+
+    /**
+     * @param bairro the bairro to set
+     */
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    /**
+     * @return the complemento
+     */
+    public String getComplemento() {
+        return complemento;
+    }
+
+    /**
+     * @param complemento the complemento to set
+     */
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    /**
+     * @return the numero
+     */
+    public int getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
     /**
      * @return the login
      */
@@ -111,7 +144,6 @@ public class ModelFuncionario {
         return login;
     }
 
-    
     /**
      * @param login the login to set
      */
@@ -119,7 +151,6 @@ public class ModelFuncionario {
         this.login = login;
     }
 
-    
     /**
      * @return the senha
      */
@@ -127,7 +158,6 @@ public class ModelFuncionario {
         return senha;
     }
 
-    
     /**
      * @param senha the senha to set
      */
@@ -135,7 +165,6 @@ public class ModelFuncionario {
         this.senha = senha;
     }
 
-    
     /**
      * @return the id_tipo_pessoa
      */
@@ -143,7 +172,6 @@ public class ModelFuncionario {
         return id_tipo_pessoa;
     }
 
-    
     /**
      * @param id_tipo_pessoa the id_tipo_pessoa to set
      */
@@ -151,23 +179,6 @@ public class ModelFuncionario {
         this.id_tipo_pessoa = id_tipo_pessoa;
     }
 
-    
-    /**
-     * @return the id_curso
-     */
-    public int getId_curso() {
-        return id_curso;
-    }
-
-    
-    /**
-     * @param id_curso the id_curso to set
-     */
-    public void setId_curso(int id_curso) {
-        this.id_curso = id_curso;
-    }
-
-    
     /**
      * @return the id_situacao
      */
@@ -175,7 +186,6 @@ public class ModelFuncionario {
         return id_situacao;
     }
 
-    
     /**
      * @param id_situacao the id_situacao to set
      */

@@ -12,10 +12,9 @@ import java.time.LocalTime;
  * @author gustavo
  */
 
-public class ModelGradeCurricular {
+public class ModelCursoMateria {
     
     private int id;
-    private int id_funcionario;
     private String nome_curso;
     private String nome_materia;
     private String periodo;
@@ -37,20 +36,6 @@ public class ModelGradeCurricular {
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * @return the id_funcionario
-     */
-    public int getId_funcionario() {
-        return id_funcionario;
-    }
-
-    /**
-     * @param id_funcionario the id_funcionario to set
-     */
-    public void setId_funcionario(int id_funcionario) {
-        this.id_funcionario = id_funcionario;
     }
 
     /**
