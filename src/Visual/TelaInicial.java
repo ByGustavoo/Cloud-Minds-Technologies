@@ -80,7 +80,7 @@ public class TelaInicial extends javax.swing.JFrame {
         PainelRoxoParteCimaLayout.setHorizontalGroup(
             PainelRoxoParteCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelRoxoParteCimaLayout.createSequentialGroup()
-                .addGap(124, 124, 124)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(imagemLogoBrancaTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelRoxoParteCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,11 +88,11 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addGroup(PainelRoxoParteCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textoNomeEmpresaTelaInicial)
                             .addComponent(subtituloEmpresaTelaInicial))
-                        .addGap(0, 393, Short.MAX_VALUE))
-                    .addGroup(PainelRoxoParteCimaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoSairTelaInicial)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelRoxoParteCimaLayout.createSequentialGroup()
+                        .addGap(700, 700, 700)
+                        .addComponent(botaoSairTelaInicial)
+                        .addContainerGap())))
         );
         PainelRoxoParteCimaLayout.setVerticalGroup(
             PainelRoxoParteCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,6 +157,12 @@ public class TelaInicial extends javax.swing.JFrame {
         PainelGestao.setForeground(new java.awt.Color(255, 255, 255));
 
         imagemGestao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ImagemGestao.png"))); // NOI18N
+        imagemGestao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imagemGestao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imagemGestaoMouseClicked(evt);
+            }
+        });
 
         textoImagemGestao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         textoImagemGestao.setForeground(new java.awt.Color(153, 51, 255));
@@ -272,6 +278,11 @@ public class TelaInicial extends javax.swing.JFrame {
         new TelaMateria().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imagemMateriaMouseClicked
+
+    private void imagemGestaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imagemGestaoMouseClicked
+        new TelaGestao().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_imagemGestaoMouseClicked
 
     /**
      * @param args the command line arguments

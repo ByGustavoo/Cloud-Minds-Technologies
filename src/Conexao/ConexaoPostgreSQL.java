@@ -30,8 +30,10 @@ public class ConexaoPostgreSQL {
         
         try {
             String url = "jdbc:postgresql://localhost:5432/postgres";
+            String usuario = "postgres";
+            String senha = "postgres";
             
-            this.conexao = DriverManager.getConnection(url);
+            this.conexao = DriverManager.getConnection(url, usuario, senha);
             
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
