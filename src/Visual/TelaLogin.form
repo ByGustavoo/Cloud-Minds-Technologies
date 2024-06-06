@@ -220,9 +220,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="BotaoRoboTelaLogin" min="-2" pref="139" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="CampoSenhaTelaLogin" alignment="0" max="32767" attributes="0"/>
+                              <Component id="CampoSenha" alignment="0" max="32767" attributes="0"/>
                               <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="CampoUsuarioTelaLogin" alignment="0" max="32767" attributes="0"/>
+                              <Component id="CampoUsuario" alignment="0" max="32767" attributes="0"/>
                               <Component id="TextoTelaLogin" alignment="0" max="32767" attributes="0"/>
                               <Component id="TextoUsuarioTelaLogin" alignment="0" max="32767" attributes="0"/>
                               <Component id="TextoSenhaTelaLogin" alignment="0" max="32767" attributes="0"/>
@@ -245,13 +245,13 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="TextoUsuarioTelaLogin" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="CampoUsuarioTelaLogin" min="-2" max="-2" attributes="0"/>
+                      <Component id="CampoUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="TextoSenhaTelaLogin" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="CampoSenhaTelaLogin" min="-2" max="-2" attributes="0"/>
+                      <Component id="CampoSenha" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -286,7 +286,7 @@
                 <Property name="text" type="java.lang.String" value="Entre com os seus dados"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CampoUsuarioTelaLogin">
+            <Component class="javax.swing.JTextField" name="CampoUsuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="33" red="99" type="rgb"/>
@@ -328,7 +328,7 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator3">
             </Component>
-            <Component class="javax.swing.JPasswordField" name="CampoSenhaTelaLogin">
+            <Component class="javax.swing.JPasswordField" name="CampoSenha">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="33" red="99" type="rgb"/>

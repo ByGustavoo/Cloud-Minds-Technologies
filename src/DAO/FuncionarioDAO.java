@@ -21,7 +21,7 @@ import java.sql.ResultSet;
 public class FuncionarioDAO extends ConexaoPostgreSQL {
 
     /**
-     * Script para Salvar Funcionários no Banco de Dados
+     * Salvar Funcionários no Banco de Dados
      *
      * @param modelFuncionario
      * @return
@@ -71,7 +71,7 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
     }
 
     /**
-     * Script para Listar todos os Funcionários do Banco de Dados,
+     * Listar todos os Funcionários do Banco de Dados,
      * onde a situação seja diferente de 0 (EXCLUIDO).
      * @return
      */
@@ -119,7 +119,7 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
     }
 
     /**
-     * Script para realizar uma Exclusão Lógica de Funcionário,
+     * Realiza uma Exclusão Lógica de Funcionário,
      * mudando o seu Status de Ativo para Excluído.
      */
     public boolean excluirFuncionario(int pId) {
@@ -167,7 +167,18 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
     ResultSet resultSet = null;
     PreparedStatement preparedStatement = null;
 
-    String sql = "select id, nome, cpf, telefone, endereco, bairro, complemento, numero, login, senha from funcionario where id = '" + pId + "'";
+    String sql = "select id, "
+            + "nome, "
+            + "cpf, "
+            + "telefone, "
+            + "endereco, "
+            + "bairro, "
+            + "complemento, "
+            + "numero, "
+            + "login, "
+            + "senha "
+            + "from funcionario "
+            + "where id = '" + pId + "'";
 
     preparedStatement = criarPreparedStatement(sql);
     try {
@@ -256,4 +267,50 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
     }
 }
 
+    
+    /**
+     * Valida o Login e a Senha no Banco de Dados
+     * @param modelFuncionario
+     * @return 
+     */
+    public boolean validarLogin(ModelFuncionario modelFuncionario) {
+        conectar();
+
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+
+        String sql = "SELECT id, nome, cpf, telefone, endereco, bairro, complemento, numero, login, senha "
+                + "FROM funcionario "
+                + "WHERE login = ? AND senha = ?";
+
+        try {
+            preparedStatement = criarPreparedStatement(sql);
+            preparedStatement.setString(1, modelFuncionario.getLogin());
+            preparedStatement.setString(2, modelFuncionario.getSenha());
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            desconectar();
+        }
+    }
 }

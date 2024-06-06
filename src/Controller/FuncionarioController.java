@@ -56,4 +56,8 @@ public class FuncionarioController {
     public boolean atualizarFuncionarioController(ModelFuncionario modelFuncionario) {
         return this.funcionarioDAO.atualizarFuncionario(modelFuncionario);
     }
+
+    public boolean validarLoginController(ModelFuncionario modelFuncionario) {
+        return this.funcionarioDAO.validarLogin(modelFuncionario);
+    }
 }

@@ -4,6 +4,8 @@
  */
 package Visual;
 
+import Controller.FuncionarioController;
+import Model.ModelFuncionario;
 import java.util.Set;
 import javax.swing.JOptionPane;
 
@@ -12,10 +14,11 @@ import javax.swing.JOptionPane;
  * @author gustavo
  */
 public class TelaLogin extends javax.swing.JFrame {
+    
+    ModelFuncionario modelFuncionario = new ModelFuncionario();
+    FuncionarioController funcionarioController = new FuncionarioController();
 
-    /**
-     * Creates new form TelaLoginTeste
-     */
+    
     public TelaLogin() {
         initComponents();
         setLocationRelativeTo(null);
@@ -44,12 +47,12 @@ public class TelaLogin extends javax.swing.JFrame {
         PainelDireita = new javax.swing.JPanel();
         TextoEsquerdaTelaLogin = new javax.swing.JLabel();
         TextoTelaLogin = new javax.swing.JLabel();
-        CampoUsuarioTelaLogin = new javax.swing.JTextField();
+        CampoUsuario = new javax.swing.JTextField();
         TextoUsuarioTelaLogin = new javax.swing.JLabel();
         TextoSenhaTelaLogin = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        CampoSenhaTelaLogin = new javax.swing.JPasswordField();
+        CampoSenha = new javax.swing.JPasswordField();
         BotaoEntrarTelaLogin = new javax.swing.JButton();
         BotaoRoboTelaLogin = new javax.swing.JCheckBox();
 
@@ -155,10 +158,10 @@ public class TelaLogin extends javax.swing.JFrame {
         TextoTelaLogin.setForeground(new java.awt.Color(255, 255, 255));
         TextoTelaLogin.setText("Entre com os seus dados");
 
-        CampoUsuarioTelaLogin.setBackground(new java.awt.Color(153, 51, 255));
-        CampoUsuarioTelaLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoUsuarioTelaLogin.setForeground(new java.awt.Color(255, 255, 255));
-        CampoUsuarioTelaLogin.setBorder(null);
+        CampoUsuario.setBackground(new java.awt.Color(153, 51, 255));
+        CampoUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CampoUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        CampoUsuario.setBorder(null);
 
         TextoUsuarioTelaLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         TextoUsuarioTelaLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,10 +171,10 @@ public class TelaLogin extends javax.swing.JFrame {
         TextoSenhaTelaLogin.setForeground(new java.awt.Color(255, 255, 255));
         TextoSenhaTelaLogin.setText("Senha");
 
-        CampoSenhaTelaLogin.setBackground(new java.awt.Color(153, 51, 255));
-        CampoSenhaTelaLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoSenhaTelaLogin.setForeground(new java.awt.Color(255, 255, 255));
-        CampoSenhaTelaLogin.setBorder(null);
+        CampoSenha.setBackground(new java.awt.Color(153, 51, 255));
+        CampoSenha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CampoSenha.setForeground(new java.awt.Color(255, 255, 255));
+        CampoSenha.setBorder(null);
 
         BotaoEntrarTelaLogin.setBackground(new java.awt.Color(153, 51, 255));
         BotaoEntrarTelaLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -200,9 +203,9 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(PainelDireitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotaoRoboTelaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PainelDireitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(CampoSenhaTelaLogin, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(CampoSenha, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(CampoUsuarioTelaLogin, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(CampoUsuario, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(TextoTelaLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(TextoUsuarioTelaLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(TextoSenhaTelaLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,13 +224,13 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(TextoUsuarioTelaLogin)
                 .addGap(18, 18, 18)
-                .addComponent(CampoUsuarioTelaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CampoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(TextoSenhaTelaLogin)
                 .addGap(19, 19, 19)
-                .addComponent(CampoSenhaTelaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -254,15 +257,31 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotaoEntrarTelaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEntrarTelaLoginActionPerformed
-        if (CampoUsuarioTelaLogin.getText().equalsIgnoreCase("")) {
+        if (CampoUsuario.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Por favor, digite seu usuário!", "Erro!", JOptionPane.WARNING_MESSAGE);
-        } else if (String.valueOf(CampoSenhaTelaLogin.getPassword()).equalsIgnoreCase("")) {
+            return;
+        }
+
+        if (String.valueOf(CampoSenha.getPassword()).equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Por favor, digite sua senha!", "Erro!", JOptionPane.WARNING_MESSAGE);
-        } else if (!BotaoRoboTelaLogin.isSelected()) {
+            return;
+        }
+
+        if (!BotaoRoboTelaLogin.isSelected()) {
             JOptionPane.showMessageDialog(null, "Por favor, confirme que você não é um robô!", "Erro!", JOptionPane.WARNING_MESSAGE);
-        } else {
+            return;
+        }
+
+        // Se todas as verificações passaram, prosseguir com a validação do login
+        ModelFuncionario modelFuncionario = new ModelFuncionario();
+        modelFuncionario.setLogin(CampoUsuario.getText());
+        modelFuncionario.setSenha(String.valueOf(CampoSenha.getPassword()));
+
+        if (funcionarioController.validarLoginController(modelFuncionario)) {
             new TelaInicial().setVisible(true);
             this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos. Por favor, tente novamente.", "Erro!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_BotaoEntrarTelaLoginActionPerformed
 
@@ -310,8 +329,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton BotaoEntrarTelaLogin;
     private javax.swing.JCheckBox BotaoRoboTelaLogin;
     private javax.swing.JLabel BotaoSair;
-    private javax.swing.JPasswordField CampoSenhaTelaLogin;
-    private javax.swing.JTextField CampoUsuarioTelaLogin;
+    private javax.swing.JPasswordField CampoSenha;
+    private javax.swing.JTextField CampoUsuario;
     private javax.swing.JLabel ImagemLogoTelaLogin;
     private javax.swing.JLabel ImagemTresBotoesTelaLogin;
     private javax.swing.JPanel PainelDireita;

@@ -175,6 +175,7 @@ public class TelaMateria extends javax.swing.JFrame {
         BotaoEditar.setBackground(new java.awt.Color(153, 51, 255));
         BotaoEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BotaoEditar.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoEditar.png"))); // NOI18N
         BotaoEditar.setText("Editar");
         BotaoEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoEditar.setContentAreaFilled(false);
@@ -183,6 +184,7 @@ public class TelaMateria extends javax.swing.JFrame {
         BotaoExcluir.setBackground(new java.awt.Color(153, 51, 255));
         BotaoExcluir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BotaoExcluir.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoExcluir.png"))); // NOI18N
         BotaoExcluir.setText("Excluir");
         BotaoExcluir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoExcluir.setContentAreaFilled(false);
@@ -191,6 +193,7 @@ public class TelaMateria extends javax.swing.JFrame {
         BotaoLimpar.setBackground(new java.awt.Color(153, 51, 255));
         BotaoLimpar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BotaoLimpar.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoLimpar.png"))); // NOI18N
         BotaoLimpar.setText("Limpar");
         BotaoLimpar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoLimpar.setContentAreaFilled(false);
