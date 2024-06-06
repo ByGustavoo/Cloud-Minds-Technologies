@@ -4,7 +4,12 @@
  */
 package Visual;
 
+import Controller.FuncionarioController;
+import Model.ModelFuncionario;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,10 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class TelaGestao extends javax.swing.JFrame {
 
-  
+    ModelFuncionario modelFuncionario = new ModelFuncionario();
+    FuncionarioController funcionarioController = new FuncionarioController();
+    List<ModelFuncionario> listarFuncionarios = new ArrayList<>();
+
     public TelaGestao() {
         initComponents();
         setLocationRelativeTo(null);
+        carregarFuncionarios();
     }
 
     /**
@@ -44,11 +53,10 @@ public class TelaGestao extends javax.swing.JFrame {
         TituloLogin = new javax.swing.JLabel();
         CampoLogin = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
-        CampoSenha = new javax.swing.JTextField();
         jSeparator9 = new javax.swing.JSeparator();
         TituloSenha = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabela = new javax.swing.JTable();
+        TabelaFuncionario = new javax.swing.JTable();
         BotaoSalvar = new javax.swing.JButton();
         BotaoEditar = new javax.swing.JButton();
         BotaoExcluir = new javax.swing.JButton();
@@ -65,6 +73,7 @@ public class TelaGestao extends javax.swing.JFrame {
         TituloNumero = new javax.swing.JLabel();
         CampoNumero = new javax.swing.JTextField();
         jSeparator18 = new javax.swing.JSeparator();
+        CampoSenha = new javax.swing.JPasswordField();
         PainelRoxoParteCima1 = new javax.swing.JPanel();
         BotaoVoltar = new javax.swing.JLabel();
         imagemLogoBrancaTelaInicial = new javax.swing.JLabel();
@@ -147,11 +156,6 @@ public class TelaGestao extends javax.swing.JFrame {
         jSeparator8.setBackground(new java.awt.Color(153, 51, 255));
         jSeparator8.setForeground(new java.awt.Color(153, 51, 255));
 
-        CampoSenha.setBackground(new java.awt.Color(255, 255, 255));
-        CampoSenha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoSenha.setForeground(new java.awt.Color(153, 51, 255));
-        CampoSenha.setBorder(null);
-
         jSeparator9.setBackground(new java.awt.Color(153, 51, 255));
         jSeparator9.setForeground(new java.awt.Color(153, 51, 255));
 
@@ -160,25 +164,43 @@ public class TelaGestao extends javax.swing.JFrame {
         TituloSenha.setForeground(new java.awt.Color(153, 51, 255));
         TituloSenha.setText("Senha");
 
-        Tabela.setBackground(new java.awt.Color(255, 255, 255));
-        Tabela.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
-        Tabela.setForeground(new java.awt.Color(255, 255, 255));
-        Tabela.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaFuncionario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+        TabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Código", "Nome", "Login", "Senha"
             }
-        ));
-        jScrollPane1.setViewportView(Tabela);
-        if (Tabela.getColumnModel().getColumnCount() > 0) {
-            Tabela.getColumnModel().getColumn(0).setPreferredWidth(50);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(TabelaFuncionario);
+        if (TabelaFuncionario.getColumnModel().getColumnCount() > 0) {
+            TabelaFuncionario.getColumnModel().getColumn(0).setMinWidth(90);
+            TabelaFuncionario.getColumnModel().getColumn(0).setPreferredWidth(90);
+            TabelaFuncionario.getColumnModel().getColumn(0).setMaxWidth(90);
+            TabelaFuncionario.getColumnModel().getColumn(1).setMinWidth(180);
+            TabelaFuncionario.getColumnModel().getColumn(1).setPreferredWidth(180);
+            TabelaFuncionario.getColumnModel().getColumn(1).setMaxWidth(180);
+            TabelaFuncionario.getColumnModel().getColumn(2).setMinWidth(175);
+            TabelaFuncionario.getColumnModel().getColumn(2).setPreferredWidth(175);
+            TabelaFuncionario.getColumnModel().getColumn(2).setMaxWidth(175);
+            TabelaFuncionario.getColumnModel().getColumn(3).setMinWidth(175);
+            TabelaFuncionario.getColumnModel().getColumn(3).setPreferredWidth(175);
+            TabelaFuncionario.getColumnModel().getColumn(3).setMaxWidth(175);
         }
 
         BotaoSalvar.setBackground(new java.awt.Color(153, 51, 255));
         BotaoSalvar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BotaoSalvar.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoSalvar.png"))); // NOI18N
         BotaoSalvar.setText("Salvar");
         BotaoSalvar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoSalvar.setContentAreaFilled(false);
@@ -192,26 +214,44 @@ public class TelaGestao extends javax.swing.JFrame {
         BotaoEditar.setBackground(new java.awt.Color(153, 51, 255));
         BotaoEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BotaoEditar.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoEditar.png"))); // NOI18N
         BotaoEditar.setText("Editar");
         BotaoEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoEditar.setContentAreaFilled(false);
         BotaoEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotaoEditarMouseClicked(evt);
+            }
+        });
 
         BotaoExcluir.setBackground(new java.awt.Color(153, 51, 255));
         BotaoExcluir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BotaoExcluir.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoExcluir.png"))); // NOI18N
         BotaoExcluir.setText("Excluir");
         BotaoExcluir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoExcluir.setContentAreaFilled(false);
         BotaoExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotaoExcluirMouseClicked(evt);
+            }
+        });
 
         BotaoLimpar.setBackground(new java.awt.Color(153, 51, 255));
         BotaoLimpar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BotaoLimpar.setForeground(new java.awt.Color(153, 51, 255));
+        BotaoLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoLimpar.png"))); // NOI18N
         BotaoLimpar.setText("Limpar");
         BotaoLimpar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoLimpar.setContentAreaFilled(false);
         BotaoLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoLimpar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotaoLimparMouseClicked(evt);
+            }
+        });
 
         TituloEndereco.setBackground(new java.awt.Color(153, 51, 255));
         TituloEndereco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -265,33 +305,40 @@ public class TelaGestao extends javax.swing.JFrame {
         jSeparator18.setBackground(new java.awt.Color(153, 51, 255));
         jSeparator18.setForeground(new java.awt.Color(153, 51, 255));
 
+        CampoSenha.setBackground(new java.awt.Color(255, 255, 255));
+        CampoSenha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CampoSenha.setForeground(new java.awt.Color(153, 51, 255));
+        CampoSenha.setBorder(null);
+
         javax.swing.GroupLayout PainelTela1Layout = new javax.swing.GroupLayout(PainelTela1);
         PainelTela1.setLayout(PainelTela1Layout);
         PainelTela1Layout.setHorizontalGroup(
             PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator6)
-                    .addComponent(jSeparator7)
-                    .addComponent(TituloTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TituloNome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CampoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jSeparator5)
-                    .addComponent(CampoCPF)
-                    .addComponent(CampoTelefone)
-                    .addComponent(TituloCPF)
+                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
                         .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator8)
                             .addComponent(TituloLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CampoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TituloSenha)
-                            .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(BotaoSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TituloSenha)
+                                .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSeparator6)
+                        .addComponent(jSeparator7)
+                        .addComponent(TituloTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TituloNome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CampoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                        .addComponent(jSeparator5)
+                        .addComponent(CampoCPF)
+                        .addComponent(CampoTelefone)
+                        .addComponent(TituloCPF)
+                        .addComponent(BotaoSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CampoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,16 +354,18 @@ public class TelaGestao extends javax.swing.JFrame {
                         .addComponent(jSeparator18, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(CampoNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(TituloNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(80, 80, 80)
-                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
                         .addComponent(BotaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(144, 144, 144)
                         .addComponent(BotaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BotaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48))
+                    .addGroup(PainelTela1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(76, 76, 76))
         );
         PainelTela1Layout.setVerticalGroup(
             PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +430,7 @@ public class TelaGestao extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(CampoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,25 +563,46 @@ public class TelaGestao extends javax.swing.JFrame {
 
     private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
         if (CampoNome.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o Nome!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, digite o Nome!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else if (CampoCPF.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o CPF!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, digite o CPF!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else if (CampoTelefone.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o Telefone!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, digite o Telefone!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else if (CampoLogin.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o Login!", "Erro!", JOptionPane.WARNING_MESSAGE);
-        } else if (CampoSenha.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite a Senha!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, digite o Login!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (String.valueOf(CampoSenha.getPassword()).equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Por favor, digite a Senha!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else if (CampoEndereco.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o Endereço!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, digite o Endereço!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else if (CampoBairro.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o Bairro!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, digite o Bairro!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else if (CampoComplemento.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o Complemento!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, digite o Complemento!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else if (CampoNumero.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o Número!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, digite o Número!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Informações salvas com sucesso!", "Dados Enviados!", JOptionPane.INFORMATION_MESSAGE);
+
+            modelFuncionario = new ModelFuncionario();
+
+            modelFuncionario.setNome(CampoNome.getText());
+            modelFuncionario.setCpf(CampoCPF.getText());
+            modelFuncionario.setTelefone(CampoTelefone.getText());
+            modelFuncionario.setLogin(CampoLogin.getText());
+            modelFuncionario.setSenha(String.valueOf(CampoSenha.getPassword()));
+            modelFuncionario.setEndereco(CampoEndereco.getText());
+            modelFuncionario.setBairro(CampoBairro.getText());
+            modelFuncionario.setComplemento(CampoComplemento.getText());
+            modelFuncionario.setNumero(Integer.parseInt(CampoNumero.getText()));
+
+            if (funcionarioController.salvarFuncionarioController(modelFuncionario)) {
+                JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso!", "Dados cadastrados com sucesso!", JOptionPane.INFORMATION_MESSAGE);
+
+                limparFormulario();
+                carregarFuncionarios();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar Funcionário", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_BotaoSalvarActionPerformed
 
@@ -544,6 +614,93 @@ public class TelaGestao extends javax.swing.JFrame {
     private void BotaoSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoSairMouseClicked
         System.exit(0);
     }//GEN-LAST:event_BotaoSairMouseClicked
+
+    private void BotaoLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoLimparMouseClicked
+        limparFormulario();
+    }//GEN-LAST:event_BotaoLimparMouseClicked
+
+    /**
+     * Realiza uma Exclusão Lógica de um Funcionário do Banco de Dados,
+     * mudando o seu Status de Ativo para Excluído.
+     * @param evt
+     */
+    private void BotaoExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoExcluirMouseClicked
+        int linha = TabelaFuncionario.getSelectedRow();
+
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(this, "Para excluir um Funcionário, você precisa selecionar uma linha!", "Erro ao Excluir um Funcionário!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int codigo = (int) TabelaFuncionario.getValueAt(linha, 0);
+            if (funcionarioController.excluirFuncionario(codigo)) {
+                carregarFuncionarios();
+                limparFormulario();
+                JOptionPane.showMessageDialog(this, "Funcionário excluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao excluir Funcionário", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_BotaoExcluirMouseClicked
+
+    /**
+     * Editar Funcionário no Banco de Dados pelo ID
+     * @param evt 
+     */
+    private void BotaoEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoEditarMouseClicked
+        modelFuncionario = new ModelFuncionario();
+    
+    int linha = TabelaFuncionario.getSelectedRow();
+
+    if (linha < 0) {
+        JOptionPane.showMessageDialog(this, "Para editar um Funcionário, você precisa selecionar uma linha!", "Erro ao Editar um Funcionário!", JOptionPane.ERROR_MESSAGE);
+    } else {
+        int codigo = (int) TabelaFuncionario.getValueAt(linha, 0);
+        modelFuncionario = funcionarioController.editarFuncionario(codigo);
+        
+        CampoNome.setText(modelFuncionario.getNome());
+        CampoCPF.setText(modelFuncionario.getCpf());
+        CampoTelefone.setText(modelFuncionario.getTelefone());
+        CampoLogin.setText(modelFuncionario.getLogin());
+        CampoSenha.setText(modelFuncionario.getSenha());
+        CampoEndereco.setText(modelFuncionario.getEndereco());
+        CampoBairro.setText(modelFuncionario.getBairro());
+        CampoComplemento.setText(modelFuncionario.getComplemento());
+        CampoNumero.setText(String.valueOf(modelFuncionario.getNumero()));
+        }
+    }//GEN-LAST:event_BotaoEditarMouseClicked
+
+    /**
+     * Limpa os dados do Formulário
+     */
+    private void limparFormulario() {
+        CampoNome.setText("");
+        CampoCPF.setText("");
+        CampoTelefone.setText("");
+        CampoLogin.setText("");
+        CampoSenha.setText("");
+        CampoEndereco.setText("");
+        CampoBairro.setText("");
+        CampoComplemento.setText("");
+        CampoNumero.setText("");
+    }
+
+    /**
+     * Carrega uma Lista de Funcionários na Tabela
+     */
+    private void carregarFuncionarios() {
+        listarFuncionarios = funcionarioController.listarFuncionarios();
+
+        DefaultTableModel tabelaFuncionario = (DefaultTableModel) TabelaFuncionario.getModel();
+        tabelaFuncionario.setNumRows(0);
+
+        for (int i = 0; i < listarFuncionarios.size(); i++) {
+            tabelaFuncionario.addRow(new Object[]{
+                listarFuncionarios.get(i).getId(),
+                listarFuncionarios.get(i).getNome(),
+                listarFuncionarios.get(i).getLogin(),
+                listarFuncionarios.get(i).getSenha()
+            });
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -602,14 +759,14 @@ public class TelaGestao extends javax.swing.JFrame {
     private javax.swing.JTextField CampoLogin;
     private javax.swing.JTextField CampoNome;
     private javax.swing.JTextField CampoNumero;
-    private javax.swing.JTextField CampoSenha;
+    private javax.swing.JPasswordField CampoSenha;
     private javax.swing.JTextField CampoTelefone;
     private javax.swing.JTextField CampoUsuarioTelaLogin3;
     private javax.swing.JPanel PainelPrincipal;
     private javax.swing.JPanel PainelRoxoParteCima1;
     private javax.swing.JPanel PainelTela;
     private javax.swing.JPanel PainelTela1;
-    private javax.swing.JTable Tabela;
+    private javax.swing.JTable TabelaFuncionario;
     private javax.swing.JLabel TituloBairro;
     private javax.swing.JLabel TituloCPF;
     private javax.swing.JLabel TituloComplemento;
