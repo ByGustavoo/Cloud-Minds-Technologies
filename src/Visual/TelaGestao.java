@@ -9,6 +9,7 @@ import Model.ModelFuncionario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +21,7 @@ public class TelaGestao extends javax.swing.JFrame {
     ModelFuncionario modelFuncionario = new ModelFuncionario();
     FuncionarioController funcionarioController = new FuncionarioController();
     List<ModelFuncionario> listarFuncionarios = new ArrayList<>();
+    String alterarCadastrar = "cadastrar";
 
     public TelaGestao() {
         initComponents();
@@ -74,6 +76,9 @@ public class TelaGestao extends javax.swing.JFrame {
         CampoNumero = new javax.swing.JTextField();
         jSeparator18 = new javax.swing.JSeparator();
         CampoSenha = new javax.swing.JPasswordField();
+        TituloCodigo = new javax.swing.JLabel();
+        CampoCodigo = new javax.swing.JTextField();
+        jSeparator10 = new javax.swing.JSeparator();
         PainelRoxoParteCima1 = new javax.swing.JPanel();
         BotaoVoltar = new javax.swing.JLabel();
         imagemLogoBrancaTelaInicial = new javax.swing.JLabel();
@@ -89,7 +94,8 @@ public class TelaGestao extends javax.swing.JFrame {
         BotaoSalvar4.setContentAreaFilled(false);
         BotaoSalvar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Interface Funcionário");
         setLocationByPlatform(true);
         setUndecorated(true);
 
@@ -310,6 +316,20 @@ public class TelaGestao extends javax.swing.JFrame {
         CampoSenha.setForeground(new java.awt.Color(153, 51, 255));
         CampoSenha.setBorder(null);
 
+        TituloCodigo.setBackground(new java.awt.Color(153, 51, 255));
+        TituloCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        TituloCodigo.setForeground(new java.awt.Color(153, 51, 255));
+        TituloCodigo.setText("Código");
+
+        CampoCodigo.setEditable(false);
+        CampoCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        CampoCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CampoCodigo.setForeground(new java.awt.Color(153, 51, 255));
+        CampoCodigo.setBorder(null);
+
+        jSeparator10.setBackground(new java.awt.Color(153, 51, 255));
+        jSeparator10.setForeground(new java.awt.Color(153, 51, 255));
+
         javax.swing.GroupLayout PainelTela1Layout = new javax.swing.GroupLayout(PainelTela1);
         PainelTela1.setLayout(PainelTela1Layout);
         PainelTela1Layout.setHorizontalGroup(
@@ -340,7 +360,7 @@ public class TelaGestao extends javax.swing.JFrame {
                         .addComponent(TituloCPF)
                         .addComponent(BotaoSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CampoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TituloEndereco)
@@ -350,10 +370,17 @@ public class TelaGestao extends javax.swing.JFrame {
                     .addComponent(CampoComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TituloComplemento)
-                    .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jSeparator18, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(CampoNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(TituloNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
+                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(CampoCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(TituloCodigo, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jSeparator10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSeparator18, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CampoNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(TituloNumero, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
@@ -370,82 +397,93 @@ public class TelaGestao extends javax.swing.JFrame {
         PainelTela1Layout.setVerticalGroup(
             PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelTela1Layout.createSequentialGroup()
-                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
-                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(34, 34, 34)
+                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PainelTela1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PainelTela1Layout.createSequentialGroup()
-                                .addComponent(TituloEndereco)
-                                .addGap(241, 241, 241)
-                                .addComponent(TituloNumero)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CampoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(TituloNome)
-                        .addGap(18, 18, 18)
-                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(26, 26, 26)
+                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(BotaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BotaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BotaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(PainelTela1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(BotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PainelTela1Layout.createSequentialGroup()
+                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PainelTela1Layout.createSequentialGroup()
+                                .addComponent(TituloNome)
+                                .addGap(18, 18, 18)
                                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(PainelTela1Layout.createSequentialGroup()
                                         .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(PainelTela1Layout.createSequentialGroup()
-                                                .addComponent(CampoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(PainelTela1Layout.createSequentialGroup()
+                                                        .addComponent(CampoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(PainelTela1Layout.createSequentialGroup()
+                                                        .addComponent(CampoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(24, 24, 24)
+                                                .addComponent(TituloCPF)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(CampoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(PainelTela1Layout.createSequentialGroup()
-                                                .addComponent(CampoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(TituloBairro)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(CampoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(24, 24, 24)
-                                        .addComponent(TituloCPF)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CampoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TituloTelefone)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(CampoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(PainelTela1Layout.createSequentialGroup()
-                                        .addComponent(TituloBairro)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CampoBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TituloComplemento)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(CampoComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(24, 24, 24)
-                                .addComponent(TituloTelefone)
-                                .addGap(12, 12, 12)
-                                .addComponent(CampoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PainelTela1Layout.createSequentialGroup()
-                                .addComponent(TituloComplemento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CampoComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24)
-                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TituloLogin)
-                            .addComponent(TituloSenha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CampoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(24, 24, 24))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
+                                .addComponent(TituloEndereco)
+                                .addGap(237, 237, 237)))
                         .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BotaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(BotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                            .addGroup(PainelTela1Layout.createSequentialGroup()
+                                .addComponent(TituloCodigo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CampoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PainelTela1Layout.createSequentialGroup()
+                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(TituloLogin)
+                                    .addComponent(TituloSenha))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(CampoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PainelTela1Layout.createSequentialGroup()
+                                .addComponent(TituloNumero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CampoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(3, 3, 3))
         );
 
         PainelRoxoParteCima1.setBackground(new java.awt.Color(153, 51, 255));
@@ -593,16 +631,30 @@ public class TelaGestao extends javax.swing.JFrame {
             modelFuncionario.setBairro(CampoBairro.getText());
             modelFuncionario.setComplemento(CampoComplemento.getText());
             modelFuncionario.setNumero(Integer.parseInt(CampoNumero.getText()));
+            
+            if (alterarCadastrar.equals("cadastrar")) {
+                if (funcionarioController.salvarFuncionarioController(modelFuncionario)) {
+                    JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso!", "Dados cadastrados com sucesso!", JOptionPane.INFORMATION_MESSAGE);
 
-            if (funcionarioController.salvarFuncionarioController(modelFuncionario)) {
-                JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso!", "Dados cadastrados com sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                    limparFormulario();
+                    carregarFuncionarios();
 
-                limparFormulario();
-                carregarFuncionarios();
-
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao cadastrar Funcionário", "Erro!", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar Funcionário", "Erro!", JOptionPane.ERROR_MESSAGE);
+                modelFuncionario.setId(Integer.parseInt(CampoCodigo.getText()));
+                if (funcionarioController.atualizarFuncionarioController(modelFuncionario)) {
+                    JOptionPane.showMessageDialog(this, "Funcionário editado com sucesso!", "Dados cadastrados com sucesso!", JOptionPane.INFORMATION_MESSAGE);
+
+                    limparFormulario();
+                    carregarFuncionarios();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao editar um Funcionário", "Erro!", JOptionPane.ERROR_MESSAGE);
+                }
             }
+
         }
     }//GEN-LAST:event_BotaoSalvarActionPerformed
 
@@ -646,25 +698,27 @@ public class TelaGestao extends javax.swing.JFrame {
      * @param evt 
      */
     private void BotaoEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoEditarMouseClicked
+        alterarCadastrar = "alterar";
         modelFuncionario = new ModelFuncionario();
-    
-    int linha = TabelaFuncionario.getSelectedRow();
-
-    if (linha < 0) {
-        JOptionPane.showMessageDialog(this, "Para editar um Funcionário, você precisa selecionar uma linha!", "Erro ao Editar um Funcionário!", JOptionPane.ERROR_MESSAGE);
-    } else {
-        int codigo = (int) TabelaFuncionario.getValueAt(linha, 0);
-        modelFuncionario = funcionarioController.editarFuncionario(codigo);
         
-        CampoNome.setText(modelFuncionario.getNome());
-        CampoCPF.setText(modelFuncionario.getCpf());
-        CampoTelefone.setText(modelFuncionario.getTelefone());
-        CampoLogin.setText(modelFuncionario.getLogin());
-        CampoSenha.setText(modelFuncionario.getSenha());
-        CampoEndereco.setText(modelFuncionario.getEndereco());
-        CampoBairro.setText(modelFuncionario.getBairro());
-        CampoComplemento.setText(modelFuncionario.getComplemento());
-        CampoNumero.setText(String.valueOf(modelFuncionario.getNumero()));
+        int linha = TabelaFuncionario.getSelectedRow();
+
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(this, "Para editar um Funcionário, você precisa selecionar uma linha!", "Erro ao Editar um Funcionário!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int codigo = (int) TabelaFuncionario.getValueAt(linha, 0);
+            modelFuncionario = funcionarioController.editarFuncionario(codigo);
+            
+            CampoCodigo.setText(String.valueOf(modelFuncionario.getId()));
+            CampoNome.setText(modelFuncionario.getNome());
+            CampoCPF.setText(modelFuncionario.getCpf());
+            CampoTelefone.setText(modelFuncionario.getTelefone());
+            CampoLogin.setText(modelFuncionario.getLogin());
+            CampoSenha.setText(modelFuncionario.getSenha());
+            CampoEndereco.setText(modelFuncionario.getEndereco());
+            CampoBairro.setText(modelFuncionario.getBairro());
+            CampoComplemento.setText(modelFuncionario.getComplemento());
+            CampoNumero.setText(String.valueOf(modelFuncionario.getNumero()));
         }
     }//GEN-LAST:event_BotaoEditarMouseClicked
 
@@ -672,6 +726,7 @@ public class TelaGestao extends javax.swing.JFrame {
      * Limpa os dados do Formulário
      */
     private void limparFormulario() {
+        CampoCodigo.setText("");
         CampoNome.setText("");
         CampoCPF.setText("");
         CampoTelefone.setText("");
@@ -681,6 +736,7 @@ public class TelaGestao extends javax.swing.JFrame {
         CampoBairro.setText("");
         CampoComplemento.setText("");
         CampoNumero.setText("");
+        alterarCadastrar = "cadastrar";
     }
 
     /**
@@ -754,6 +810,7 @@ public class TelaGestao extends javax.swing.JFrame {
     private javax.swing.JLabel BotaoVoltar;
     private javax.swing.JTextField CampoBairro;
     private javax.swing.JTextField CampoCPF;
+    private javax.swing.JTextField CampoCodigo;
     private javax.swing.JTextField CampoComplemento;
     private javax.swing.JTextField CampoEndereco;
     private javax.swing.JTextField CampoLogin;
@@ -769,6 +826,7 @@ public class TelaGestao extends javax.swing.JFrame {
     private javax.swing.JTable TabelaFuncionario;
     private javax.swing.JLabel TituloBairro;
     private javax.swing.JLabel TituloCPF;
+    private javax.swing.JLabel TituloCodigo;
     private javax.swing.JLabel TituloComplemento;
     private javax.swing.JLabel TituloEndereco;
     private javax.swing.JLabel TituloLogin;
@@ -778,6 +836,7 @@ public class TelaGestao extends javax.swing.JFrame {
     private javax.swing.JLabel TituloTelefone;
     private javax.swing.JLabel imagemLogoBrancaTelaInicial;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;

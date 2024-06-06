@@ -134,13 +134,11 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
             preparedStatement.setInt(2, pId);
             preparedStatement.executeUpdate();
             return true;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
             return false;
-        } 
-        finally {
+        } finally {
             if (preparedStatement != null) {
                 try {
                     preparedStatement.close();
@@ -150,54 +148,8 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
                 }
             }
             this.desconectar();
+            return true;
         }
-    }
-    
-    public ModelFuncionario editarFuncionrio(int pId) {
-
-        ModelFuncionario modelFuncionario = new ModelFuncionario();
-
-        conectar();
-
-        ResultSet resultSet = null;
-        PreparedStatement preparedStatement = null;
-
-        String sql = "select nome, cpf, telefone, endereco, bairro, complemento, numero, login, senha from funcionario where id = '" + pId + "'";
-
-        preparedStatement = criarPreparedStatement(sql);
-        try {
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                modelFuncionario = new ModelFuncionario();
-
-                modelFuncionario.setNome(resultSet.getString("nome"));
-                modelFuncionario.setCpf(resultSet.getString("cpf"));
-                modelFuncionario.setTelefone(resultSet.getString("telefone"));
-                modelFuncionario.setEndereco(resultSet.getString("endereco"));
-                modelFuncionario.setBairro(resultSet.getString("bairro"));
-                modelFuncionario.setComplemento(resultSet.getString("complemento"));
-                modelFuncionario.setNumero(resultSet.getInt("numero"));
-                modelFuncionario.setLogin(resultSet.getString("login"));
-                modelFuncionario.setSenha(resultSet.getString("senha"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-        finally {
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            this.desconectar();
-        }
-
-        return modelFuncionario;
     }
     
     
@@ -215,13 +167,14 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
     ResultSet resultSet = null;
     PreparedStatement preparedStatement = null;
 
-    String sql = "select nome, cpf, telefone, endereco, bairro, complemento, numero, login, senha from funcionario where id = '" + pId + "'";
+    String sql = "select id, nome, cpf, telefone, endereco, bairro, complemento, numero, login, senha from funcionario where id = '" + pId + "'";
 
     preparedStatement = criarPreparedStatement(sql);
     try {
         resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
+            modelFuncionario.setId(resultSet.getInt("id"));
             modelFuncionario.setNome(resultSet.getString("nome"));
             modelFuncionario.setCpf(resultSet.getString("cpf"));
             modelFuncionario.setTelefone(resultSet.getString("telefone"));
@@ -231,12 +184,66 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
             modelFuncionario.setNumero(resultSet.getInt("numero"));
             modelFuncionario.setLogin(resultSet.getString("login"));
             modelFuncionario.setSenha(resultSet.getString("senha"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            desconectar();
         }
+
+        return modelFuncionario;
+  }
+    
+    
+    /**
+     * Atualizar Funcionário pelo ID
+     * @param modelFuncionario
+     * @return 
+     */
+    public boolean atualizarFuncionario(ModelFuncionario modelFuncionario) {
+    this.conectar();
+    
+    String sql = "UPDATE funcionario SET "
+                + "nome = ?, "
+                + "cpf = ?, "
+                + "telefone = ?, "
+                + "endereco = ?, "
+                + "bairro = ?, "
+                + "complemento = ?, "
+                + "numero = ?, "
+                + "login = ?, "
+                + "senha = ? "
+                + "WHERE id = ?";
+    
+    PreparedStatement preparedStatement = null;
+    try {
+        preparedStatement = criarPreparedStatement(sql);
+        preparedStatement.setString(1, modelFuncionario.getNome());
+        preparedStatement.setString(2, modelFuncionario.getCpf());
+        preparedStatement.setString(3, modelFuncionario.getTelefone());
+        preparedStatement.setString(4, modelFuncionario.getEndereco());
+        preparedStatement.setString(5, modelFuncionario.getBairro());
+        preparedStatement.setString(6, modelFuncionario.getComplemento());
+        preparedStatement.setInt(7, modelFuncionario.getNumero());
+        preparedStatement.setString(8, modelFuncionario.getLogin());
+        preparedStatement.setString(9, modelFuncionario.getSenha());
+        preparedStatement.setInt(10, modelFuncionario.getId());
+        
+        int linhasAfetadas = preparedStatement.executeUpdate();
+        return linhasAfetadas > 0;
+        
     } catch (SQLException ex) {
         Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-    } 
-    
-    finally {
+        return false;
+    } finally {
         if (preparedStatement != null) {
             try {
                 preparedStatement.close();
@@ -245,9 +252,8 @@ public class FuncionarioDAO extends ConexaoPostgreSQL {
                 Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        desconectar();
+        this.desconectar();
     }
+}
 
-    return modelFuncionario;
-  }
 }
