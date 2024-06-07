@@ -32,22 +32,24 @@ public class ProfessorCursoDAO extends ConexaoPostgreSQL {
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
 
-        String sql = "select\n"
-                + "    pm.id,\n"
-                + "    f.id as id_professor,\n"
-                + "    f.nome as nome_professor,\n"
-                + "    cm.nome_curso,\n"
-                + "    cm.nome_materia,\n"
-                + "    cm.periodo,\n"
-                + "    cm.carga_horaria,\n"
-                + "    cm.horario_inicio,\n"
-                + "    cm.horario_fim,\n"
-                + "    cm.semestre,\n"
-                + "    cm.ano \n"
-                + "from\n"
-                + "    professor_materia pm \n"
-                + "join funcionario f on pm.id_funcionario = f.id \n"
-                + "join curso_materia cm on pm.id_curso_materia = cm.id";
+            String sql = "SELECT\n"
+            + "    pm.id,\n"
+            + "    f.id AS id_professor,\n"
+            + "    f.nome AS nome_professor,\n"
+            + "    cm.nome_curso,\n"
+            + "    cm.nome_materia,\n"
+            + "    cm.periodo,\n"
+            + "    cm.carga_horaria,\n"
+            + "    cm.horario_inicio,\n"
+            + "    cm.horario_fim,\n"
+            + "    cm.semestre,\n"
+            + "    cm.ano \n"
+            + "FROM\n"
+            + "    professor_materia pm \n"
+            + "JOIN funcionario f ON pm.id_funcionario = f.id \n"
+            + "JOIN curso_materia cm ON pm.id_curso_materia = cm.id \n"
+            + "WHERE f.id_situacao != 0 AND cm.id_situacao != 0";
+
 
         try {
             preparedStatement = criarPreparedStatement(sql);

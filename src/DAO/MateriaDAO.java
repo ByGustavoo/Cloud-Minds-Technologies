@@ -77,17 +77,19 @@ public class MateriaDAO extends ConexaoPostgreSQL {
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
 
-        String sql = "SELECT "
-                + "    id, "
-                + "    nome_curso, "
-                + "    nome_materia, "
-                + "    periodo, "
-                + "    carga_horaria, "
-                + "    horario_inicio, "
-                + "    horario_fim, "
-                + "    semestre, "
-                + "    ano "
-                + "FROM curso_materia";
+            String sql = "SELECT "
+            + "    id, "
+            + "    nome_curso, "
+            + "    nome_materia, "
+            + "    periodo, "
+            + "    carga_horaria, "
+            + "    horario_inicio, "
+            + "    horario_fim, "
+            + "    semestre, "
+            + "    ano "
+            + "FROM curso_materia "
+            + "WHERE id_situacao != 0";
+
 
         try {
             preparedStatement = criarPreparedStatement(sql);
@@ -124,32 +126,33 @@ public class MateriaDAO extends ConexaoPostgreSQL {
      */
     public boolean excluirMateria(int pId) {
 
-        conectar();
-        PreparedStatement preparedStatement = null;
-        String sql = "DELETE FROM curso_materia WHERE id = ?";
+    conectar();
+    PreparedStatement preparedStatement = null;
+    String sql = "UPDATE curso_materia SET id_situacao = ? WHERE id = ?";
 
-        try {
-            preparedStatement = this.criarPreparedStatement(sql);
-            preparedStatement.setInt(1, pId);
-            preparedStatement.executeUpdate();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(MateriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
-            return false;
-        } finally {
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    Logger.getLogger(MateriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
+    try {
+        preparedStatement = this.criarPreparedStatement(sql);
+        preparedStatement.setInt(1, 0); // 0 representa a situação "excluído"
+        preparedStatement.setInt(2, pId);
+        preparedStatement.executeUpdate();
+        return true;
+    } catch (SQLException ex) {
+        Logger.getLogger(MateriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        ex.printStackTrace();
+        return false;
+    } finally {
+        if (preparedStatement != null) {
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                Logger.getLogger(MateriaDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.desconectar();
-            return true;
         }
+        this.desconectar();
     }
+}
+
 
     /**
      * Edita um Curso pegando seu ID

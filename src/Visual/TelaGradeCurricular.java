@@ -50,7 +50,6 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaGradeCurricular = new javax.swing.JTable();
         textoNomeEmpresaTelaInicial = new javax.swing.JLabel();
-        BotaoSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -182,15 +181,6 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
         textoNomeEmpresaTelaInicial.setForeground(new java.awt.Color(153, 51, 255));
         textoNomeEmpresaTelaInicial.setText("Grade Curricular");
 
-        BotaoSalvar.setBackground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        BotaoSalvar.setForeground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoSalvar.png"))); // NOI18N
-        BotaoSalvar.setText("Exportar");
-        BotaoSalvar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
-        BotaoSalvar.setContentAreaFilled(false);
-        BotaoSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         javax.swing.GroupLayout PainelTelaLayout = new javax.swing.GroupLayout(PainelTela);
         PainelTela.setLayout(PainelTelaLayout);
         PainelTelaLayout.setHorizontalGroup(
@@ -205,10 +195,6 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
                         .addGap(563, 563, 563)
                         .addComponent(textoNomeEmpresaTelaInicial)))
                 .addContainerGap(85, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTelaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(BotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(541, 541, 541))
         );
         PainelTelaLayout.setVerticalGroup(
             PainelTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,9 +204,7 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
                 .addComponent(textoNomeEmpresaTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(BotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         PainelPrincipal.add(PainelTela, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1340, 670));
@@ -315,7 +299,6 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotaoSalvar;
     private javax.swing.JLabel BotaoVoltar;
     private javax.swing.JPanel PainelPrincipal;
     private javax.swing.JPanel PainelRoxoParteCima;

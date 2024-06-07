@@ -23,6 +23,7 @@ public class ModelCursoMateria {
     private String horario_fim;
     private int semestre;
     private int ano;
+    private int id_situacao;
 
     /**
      * @return the id
@@ -148,5 +149,19 @@ public class ModelCursoMateria {
      */
     public void setAno(int ano) {
         this.ano = ano;
+    }
+
+    /**
+     * @return the id_situacao
+     */
+    public int getId_situacao() {
+        return id_situacao;
+    }
+
+    /**
+     * @param id_situacao the id_situacao to set
+     */
+    public void setId_situacao(int id_situacao) {
+        this.id_situacao = id_situacao;
     }
 }
