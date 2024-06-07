@@ -18,9 +18,9 @@ public class ModelCursoMateria {
     private String nome_curso;
     private String nome_materia;
     private String periodo;
-    private float carga_horaria;
-    private LocalTime horario_inicio;
-    private LocalTime horario_fim;
+    private int carga_horaria;
+    private String horario_inicio;
+    private String horario_fim;
     private int semestre;
     private int ano;
 
@@ -83,42 +83,42 @@ public class ModelCursoMateria {
     /**
      * @return the carga_horaria
      */
-    public float getCarga_horaria() {
+    public int getCarga_horaria() {
         return carga_horaria;
     }
 
     /**
      * @param carga_horaria the carga_horaria to set
      */
-    public void setCarga_horaria(float carga_horaria) {
+    public void setCarga_horaria(int carga_horaria) {
         this.carga_horaria = carga_horaria;
     }
 
     /**
      * @return the horario_inicio
      */
-    public LocalTime getHorario_inicio() {
+    public String getHorario_inicio() {
         return horario_inicio;
     }
 
     /**
      * @param horario_inicio the horario_inicio to set
      */
-    public void setHorario_inicio(LocalTime horario_inicio) {
+    public void setHorario_inicio(String horario_inicio) {
         this.horario_inicio = horario_inicio;
     }
 
     /**
      * @return the horario_fim
      */
-    public LocalTime getHorario_fim() {
+    public String getHorario_fim() {
         return horario_fim;
     }
 
     /**
      * @param horario_fim the horario_fim to set
      */
-    public void setHorario_fim(LocalTime horario_fim) {
+    public void setHorario_fim(String horario_fim) {
         this.horario_fim = horario_fim;
     }
 

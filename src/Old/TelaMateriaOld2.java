@@ -2,30 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Visual;
+package Old;
 
-import Controller.MateriaController;
-import Model.ModelCursoMateria;
-import java.util.ArrayList;
-import java.util.List;
+import Visual.TelaInicial;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author gustavo
  */
-public class TelaMateria extends javax.swing.JFrame {
-    
-    ModelCursoMateria modelCursoMateria = new ModelCursoMateria();
-    MateriaController materiaController = new MateriaController();
-    List<ModelCursoMateria> listaMateria = new ArrayList<>();
-    String alterarCadastrar = "cadastrar";
+public class TelaMateriaOld2 extends javax.swing.JFrame {
+
   
-    public TelaMateria() {
+    public TelaMateriaOld2() {
         initComponents();
         setLocationRelativeTo(null);
-        carregarMaterias();
     }
 
     /**
@@ -42,6 +33,9 @@ public class TelaMateria extends javax.swing.JFrame {
         PainelTela = new javax.swing.JPanel();
         CampoUsuarioTelaLogin3 = new javax.swing.JTextField();
         PainelTela1 = new javax.swing.JPanel();
+        TituloProfessor = new javax.swing.JLabel();
+        CampoProfessor = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
         TituloCurso = new javax.swing.JLabel();
         CampoCurso = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
@@ -66,15 +60,14 @@ public class TelaMateria extends javax.swing.JFrame {
         TituloCurso5 = new javax.swing.JLabel();
         CampoAno = new javax.swing.JTextField();
         jSeparator18 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TabelaProfessor = new javax.swing.JTable();
         TituloCargaHoraria1 = new javax.swing.JLabel();
-        CampoHorarioInicio = new javax.swing.JTextField();
+        CampoCargaHoraria1 = new javax.swing.JTextField();
         jSeparator19 = new javax.swing.JSeparator();
         TituloCargaHoraria2 = new javax.swing.JLabel();
-        CampoHorarioFim = new javax.swing.JTextField();
+        CampoCargaHoraria2 = new javax.swing.JTextField();
         jSeparator20 = new javax.swing.JSeparator();
-        TituloCodigo = new javax.swing.JLabel();
-        CampoCodigo = new javax.swing.JTextField();
-        jSeparator21 = new javax.swing.JSeparator();
         PainelRoxoParteCima1 = new javax.swing.JPanel();
         BotaoVoltar = new javax.swing.JLabel();
         imagemLogoBrancaTelaInicial = new javax.swing.JLabel();
@@ -90,8 +83,7 @@ public class TelaMateria extends javax.swing.JFrame {
         BotaoSalvar4.setContentAreaFilled(false);
         BotaoSalvar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Interface Curso");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setUndecorated(true);
 
@@ -105,6 +97,19 @@ public class TelaMateria extends javax.swing.JFrame {
         CampoUsuarioTelaLogin3.setBorder(null);
 
         PainelTela1.setBackground(new java.awt.Color(255, 255, 255));
+
+        TituloProfessor.setBackground(new java.awt.Color(153, 51, 255));
+        TituloProfessor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        TituloProfessor.setForeground(new java.awt.Color(153, 51, 255));
+        TituloProfessor.setText("Professor");
+
+        CampoProfessor.setBackground(new java.awt.Color(255, 255, 255));
+        CampoProfessor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CampoProfessor.setForeground(new java.awt.Color(153, 51, 255));
+        CampoProfessor.setBorder(null);
+
+        jSeparator5.setBackground(new java.awt.Color(153, 51, 255));
+        jSeparator5.setForeground(new java.awt.Color(153, 51, 255));
 
         TituloCurso.setBackground(new java.awt.Color(153, 51, 255));
         TituloCurso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -132,42 +137,32 @@ public class TelaMateria extends javax.swing.JFrame {
         jSeparator7.setBackground(new java.awt.Color(153, 51, 255));
         jSeparator7.setForeground(new java.awt.Color(153, 51, 255));
 
+        TabelaMateria.setBackground(new java.awt.Color(255, 255, 255));
         TabelaMateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+        TabelaMateria.setForeground(new java.awt.Color(255, 255, 255));
         TabelaMateria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Curso", "Matéria", "Semestre", "Ano", "Período", "Carga Horária", "Início", "Fim"
+                "Curso", "Matéria", "Semestre", "Ano", "Período", "Carga Horária", "Início", "Fim"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(TabelaMateria);
         if (TabelaMateria.getColumnModel().getColumnCount() > 0) {
-            TabelaMateria.getColumnModel().getColumn(0).setMinWidth(80);
-            TabelaMateria.getColumnModel().getColumn(0).setPreferredWidth(80);
-            TabelaMateria.getColumnModel().getColumn(0).setMaxWidth(80);
-            TabelaMateria.getColumnModel().getColumn(3).setMinWidth(50);
-            TabelaMateria.getColumnModel().getColumn(3).setPreferredWidth(50);
-            TabelaMateria.getColumnModel().getColumn(4).setMinWidth(20);
-            TabelaMateria.getColumnModel().getColumn(4).setPreferredWidth(40);
+            TabelaMateria.getColumnModel().getColumn(2).setMinWidth(50);
+            TabelaMateria.getColumnModel().getColumn(2).setPreferredWidth(50);
+            TabelaMateria.getColumnModel().getColumn(3).setMinWidth(20);
+            TabelaMateria.getColumnModel().getColumn(3).setPreferredWidth(40);
+            TabelaMateria.getColumnModel().getColumn(6).setMinWidth(20);
+            TabelaMateria.getColumnModel().getColumn(6).setPreferredWidth(40);
             TabelaMateria.getColumnModel().getColumn(7).setMinWidth(20);
             TabelaMateria.getColumnModel().getColumn(7).setPreferredWidth(40);
-            TabelaMateria.getColumnModel().getColumn(8).setMinWidth(20);
-            TabelaMateria.getColumnModel().getColumn(8).setPreferredWidth(40);
         }
 
         BotaoSalvar.setBackground(new java.awt.Color(153, 51, 255));
         BotaoSalvar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BotaoSalvar.setForeground(new java.awt.Color(153, 51, 255));
-        BotaoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemBotaoSalvar.png"))); // NOI18N
         BotaoSalvar.setText("Salvar");
         BotaoSalvar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoSalvar.setContentAreaFilled(false);
@@ -186,11 +181,6 @@ public class TelaMateria extends javax.swing.JFrame {
         BotaoEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoEditar.setContentAreaFilled(false);
         BotaoEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotaoEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoEditarActionPerformed(evt);
-            }
-        });
 
         BotaoExcluir.setBackground(new java.awt.Color(153, 51, 255));
         BotaoExcluir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -200,11 +190,6 @@ public class TelaMateria extends javax.swing.JFrame {
         BotaoExcluir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoExcluir.setContentAreaFilled(false);
         BotaoExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotaoExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoExcluirActionPerformed(evt);
-            }
-        });
 
         BotaoLimpar.setBackground(new java.awt.Color(153, 51, 255));
         BotaoLimpar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -214,11 +199,6 @@ public class TelaMateria extends javax.swing.JFrame {
         BotaoLimpar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
         BotaoLimpar.setContentAreaFilled(false);
         BotaoLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotaoLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoLimparActionPerformed(evt);
-            }
-        });
 
         TituloPeriodo.setBackground(new java.awt.Color(153, 51, 255));
         TituloPeriodo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -272,15 +252,28 @@ public class TelaMateria extends javax.swing.JFrame {
         jSeparator18.setBackground(new java.awt.Color(153, 51, 255));
         jSeparator18.setForeground(new java.awt.Color(153, 51, 255));
 
+        TabelaProfessor.setBackground(new java.awt.Color(255, 255, 255));
+        TabelaProfessor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+        TabelaProfessor.setForeground(new java.awt.Color(255, 255, 255));
+        TabelaProfessor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código Professor", "Nome Professor"
+            }
+        ));
+        jScrollPane2.setViewportView(TabelaProfessor);
+
         TituloCargaHoraria1.setBackground(new java.awt.Color(153, 51, 255));
         TituloCargaHoraria1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         TituloCargaHoraria1.setForeground(new java.awt.Color(153, 51, 255));
-        TituloCargaHoraria1.setText("Horário Início");
+        TituloCargaHoraria1.setText("Horári Inicio");
 
-        CampoHorarioInicio.setBackground(new java.awt.Color(255, 255, 255));
-        CampoHorarioInicio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoHorarioInicio.setForeground(new java.awt.Color(153, 51, 255));
-        CampoHorarioInicio.setBorder(null);
+        CampoCargaHoraria1.setBackground(new java.awt.Color(255, 255, 255));
+        CampoCargaHoraria1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CampoCargaHoraria1.setForeground(new java.awt.Color(153, 51, 255));
+        CampoCargaHoraria1.setBorder(null);
 
         jSeparator19.setBackground(new java.awt.Color(153, 51, 255));
         jSeparator19.setForeground(new java.awt.Color(153, 51, 255));
@@ -290,112 +283,119 @@ public class TelaMateria extends javax.swing.JFrame {
         TituloCargaHoraria2.setForeground(new java.awt.Color(153, 51, 255));
         TituloCargaHoraria2.setText("Horário Fim");
 
-        CampoHorarioFim.setBackground(new java.awt.Color(255, 255, 255));
-        CampoHorarioFim.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoHorarioFim.setForeground(new java.awt.Color(153, 51, 255));
-        CampoHorarioFim.setBorder(null);
+        CampoCargaHoraria2.setBackground(new java.awt.Color(255, 255, 255));
+        CampoCargaHoraria2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        CampoCargaHoraria2.setForeground(new java.awt.Color(153, 51, 255));
+        CampoCargaHoraria2.setBorder(null);
 
         jSeparator20.setBackground(new java.awt.Color(153, 51, 255));
         jSeparator20.setForeground(new java.awt.Color(153, 51, 255));
-
-        TituloCodigo.setBackground(new java.awt.Color(153, 51, 255));
-        TituloCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        TituloCodigo.setForeground(new java.awt.Color(153, 51, 255));
-        TituloCodigo.setText("Código");
-
-        CampoCodigo.setEditable(false);
-        CampoCodigo.setBackground(new java.awt.Color(255, 255, 255));
-        CampoCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CampoCodigo.setForeground(new java.awt.Color(153, 51, 255));
-        CampoCodigo.setBorder(null);
-
-        jSeparator21.setBackground(new java.awt.Color(153, 51, 255));
-        jSeparator21.setForeground(new java.awt.Color(153, 51, 255));
 
         javax.swing.GroupLayout PainelTela1Layout = new javax.swing.GroupLayout(PainelTela1);
         PainelTela1.setLayout(PainelTela1Layout);
         PainelTela1Layout.setHorizontalGroup(
             PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(54, 54, 54)
+                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator6)
+                            .addComponent(jSeparator7)
+                            .addComponent(CampoProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(jSeparator5)
+                            .addComponent(CampoCurso)
+                            .addComponent(CampoMateria)
                             .addComponent(TituloCurso)
+                            .addComponent(TituloProfessor)
                             .addComponent(TituloMateria)
-                            .addComponent(TituloSemestre)
-                            .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(CampoMateria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                .addComponent(CampoCurso, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(PainelTela1Layout.createSequentialGroup()
-                                    .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TituloCodigo)
-                                        .addComponent(jSeparator21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CampoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                                    .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TituloCurso5)
-                                        .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CampoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(CampoSemestre, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator17, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TituloPeriodo)
-                                .addComponent(jSeparator15)
-                                .addComponent(CampoPeriodo)
-                                .addComponent(CampoCargaHoraria)
-                                .addComponent(TituloCargaHoraria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CampoHorarioInicio)
-                                .addComponent(TituloCargaHoraria1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator19, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CampoHorarioFim)
-                                .addComponent(TituloCargaHoraria2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator20, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(BotaoSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
+                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(CampoSemestre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TituloSemestre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSeparator18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CampoAno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TituloCurso5)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(BotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(60, 60, 60)
                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(TituloPeriodo)
+                        .addComponent(jSeparator15)
+                        .addComponent(CampoPeriodo)
+                        .addComponent(CampoCargaHoraria)
+                        .addComponent(TituloCargaHoraria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator16))
+                    .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CampoCargaHoraria1)
+                        .addComponent(TituloCargaHoraria1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator19, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CampoCargaHoraria2)
+                        .addComponent(TituloCargaHoraria2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator20, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(59, 59, 59)
                         .addComponent(BotaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(182, 182, 182)
-                        .addComponent(BotaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(107, 107, 107))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(77, 77, 77))
+                        .addGap(0, 123, Short.MAX_VALUE)
+                        .addComponent(BotaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(235, 235, 235)
+                        .addComponent(BotaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(100, 100, 100))
         );
         PainelTela1Layout.setVerticalGroup(
             PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelTela1Layout.createSequentialGroup()
                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(44, 44, 44)
                         .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(PainelTela1Layout.createSequentialGroup()
-                                .addComponent(TituloPeriodo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CampoPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
+                                        .addComponent(TituloPeriodo)
+                                        .addGap(155, 155, 155))
                                     .addGroup(PainelTela1Layout.createSequentialGroup()
-                                        .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(86, 86, 86))
-                                    .addGroup(PainelTela1Layout.createSequentialGroup()
-                                        .addComponent(TituloCargaHoraria)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CampoCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(CampoPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(PainelTela1Layout.createSequentialGroup()
+                                                .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(86, 86, 86))
+                                            .addGroup(PainelTela1Layout.createSequentialGroup()
+                                                .addComponent(TituloCargaHoraria)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(CampoCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(TituloCargaHoraria1)
+                                .addGap(18, 18, 18)
+                                .addComponent(CampoCargaHoraria1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator19, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PainelTela1Layout.createSequentialGroup()
+                                .addComponent(TituloProfessor)
+                                .addGap(18, 18, 18)
+                                .addComponent(CampoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
                                 .addComponent(TituloCurso)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(CampoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -407,45 +407,32 @@ public class TelaMateria extends javax.swing.JFrame {
                                 .addComponent(CampoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(PainelTela1Layout.createSequentialGroup()
+                                .addComponent(TituloCurso5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TituloCargaHoraria1)
-                                .addGap(18, 18, 18)
-                                .addComponent(CampoHorarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CampoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator19, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(TituloCargaHoraria2)
-                                .addGap(18, 18, 18)
-                                .addComponent(CampoHorarioFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator20, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PainelTela1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                                 .addComponent(TituloSemestre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(CampoSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
-                                .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PainelTela1Layout.createSequentialGroup()
-                                        .addComponent(TituloCurso5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CampoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(PainelTela1Layout.createSequentialGroup()
-                                        .addComponent(TituloCodigo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(CampoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator21, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(PainelTela1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
+                                .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PainelTela1Layout.createSequentialGroup()
+                                .addComponent(TituloCargaHoraria2)
+                                .addGap(18, 18, 18)
+                                .addComponent(CampoCargaHoraria2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator20, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTela1Layout.createSequentialGroup()
+                        .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)))
                 .addGroup(PainelTela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -491,34 +478,34 @@ public class TelaMateria extends javax.swing.JFrame {
             .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BotaoVoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(imagemLogoBrancaTelaInicial)
                 .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotaoSair)
-                        .addGap(203, 203, 203))
-                    .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(subtituloEmpresaTelaInicial)
                             .addComponent(textoNomeEmpresaTelaInicial))
-                        .addContainerGap(859, Short.MAX_VALUE))))
+                        .addContainerGap(847, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelRoxoParteCima1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotaoSair)
+                        .addGap(20, 20, 20))))
         );
         PainelRoxoParteCima1Layout.setVerticalGroup(
             PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
                 .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BotaoSair)
-                        .addGap(15, 15, 15)
+                        .addGap(43, 43, 43)
                         .addComponent(textoNomeEmpresaTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(subtituloEmpresaTelaInicial))
                     .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(BotaoVoltar))
+                        .addGroup(PainelRoxoParteCima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BotaoSair)
+                            .addComponent(BotaoVoltar)))
                     .addGroup(PainelRoxoParteCima1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(imagemLogoBrancaTelaInicial)))
@@ -535,8 +522,8 @@ public class TelaMateria extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PainelTelaLayout.createSequentialGroup()
                 .addGroup(PainelTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PainelRoxoParteCima1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PainelTela1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PainelTela1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PainelRoxoParteCima1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         PainelTelaLayout.setVerticalGroup(
@@ -550,7 +537,7 @@ public class TelaMateria extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        PainelPrincipal.add(PainelTela, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 660));
+        PainelPrincipal.add(PainelTela, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 660));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -576,137 +563,25 @@ public class TelaMateria extends javax.swing.JFrame {
     }//GEN-LAST:event_BotaoSairMouseClicked
 
     private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
-        if (CampoCurso.getText().isEmpty() || CampoMateria.getText().isEmpty() || CampoSemestre.getText().isEmpty()
-                || CampoAno.getText().isEmpty() || CampoPeriodo.getText().isEmpty() || CampoCargaHoraria.getText().isEmpty()
-                || CampoHorarioInicio.getText().isEmpty() || CampoHorarioFim.getText().isEmpty()) {
-            
-            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        if (CampoProfessor.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, selecione o Professor!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if(CampoCurso.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o nome do Curso!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoMateria.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o nome da Matéria!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoSemestre.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o Semestre!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoAno.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o Ano!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoPeriodo.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o Período!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        } else if (CampoCargaHoraria.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite a Carga Horária!", "Erro!", JOptionPane.WARNING_MESSAGE);
         } else {
-            
-            modelCursoMateria = new ModelCursoMateria();
-            
-            modelCursoMateria.setNome_curso(CampoCurso.getText());
-            modelCursoMateria.setNome_materia(CampoMateria.getText());
-            modelCursoMateria.setSemestre(Integer.parseInt(CampoSemestre.getText()));
-            modelCursoMateria.setAno(Integer.parseInt(CampoAno.getText()));
-            modelCursoMateria.setPeriodo(CampoPeriodo.getText());
-            modelCursoMateria.setCarga_horaria(Integer.parseInt(CampoCargaHoraria.getText()));
-            modelCursoMateria.setHorario_inicio(CampoHorarioInicio.getText());
-            modelCursoMateria.setHorario_fim(CampoHorarioFim.getText());
-
-            if (alterarCadastrar.equals("cadastrar")) {
-                
-                if (materiaController.salvarMateriaController(modelCursoMateria)) {
-                    JOptionPane.showMessageDialog(this, "Curso cadastrado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-                    limparFormulario();
-                    carregarMaterias();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Erro ao cadastrar um Curso!", "Erro!", JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (alterarCadastrar.equals("alterar")) {
-               
-                modelCursoMateria.setId(Integer.parseInt(CampoCodigo.getText()));
-                if (materiaController.atualizarMateriaController(modelCursoMateria)) {
-                    JOptionPane.showMessageDialog(this, "Curso editado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-                    limparFormulario();
-                    carregarMaterias();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Erro ao editar um Curso!", "Erro!", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+            JOptionPane.showMessageDialog(null, "Informações salvas com sucesso!", "Dados Enviados!", JOptionPane.INFORMATION_MESSAGE);
         }
-
     }//GEN-LAST:event_BotaoSalvarActionPerformed
 
-    private void BotaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoLimparActionPerformed
-        limparFormulario();
-    }//GEN-LAST:event_BotaoLimparActionPerformed
-
-    private void BotaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoExcluirActionPerformed
-        int linha = TabelaMateria.getSelectedRow();
-
-        if (linha < 0) {
-            JOptionPane.showMessageDialog(this, "Para excluir, você precisa selecionar um Curso!", "Erro ao Excluir um Curso!", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int codigo = (int) TabelaMateria.getValueAt(linha, 0);
-            if (materiaController.excluirMateriaController(codigo)) {
-                carregarMaterias();
-                limparFormulario();
-                JOptionPane.showMessageDialog(this, "Curso excluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro ao excluir um Curso", "Erro!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_BotaoExcluirActionPerformed
-
-    private void BotaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEditarActionPerformed
-        alterarCadastrar = "alterar";
-        modelCursoMateria = new ModelCursoMateria();
-
-        int linha = TabelaMateria.getSelectedRow();
-
-        if (linha < 0) {
-            JOptionPane.showMessageDialog(this, "Para editar um Curso, você precisa selecionar uma linha!", "Erro ao Editar um Curso!", JOptionPane.ERROR_MESSAGE);
-        } else {
-            int codigo = (int) TabelaMateria.getValueAt(linha, 0);
-            modelCursoMateria = materiaController.editarMateriaController(codigo);
-
-            if (modelCursoMateria != null) {
-                CampoCodigo.setText(String.valueOf(modelCursoMateria.getId()));
-                CampoCurso.setText(modelCursoMateria.getNome_curso());
-                CampoMateria.setText(modelCursoMateria.getNome_materia());
-                CampoSemestre.setText(String.valueOf(modelCursoMateria.getSemestre()));
-                CampoAno.setText(String.valueOf(modelCursoMateria.getAno()));
-                CampoPeriodo.setText(modelCursoMateria.getPeriodo());
-                CampoCargaHoraria.setText(String.valueOf(modelCursoMateria.getCarga_horaria()));
-                CampoHorarioInicio.setText(String.valueOf(modelCursoMateria.getHorario_inicio()));
-                CampoHorarioFim.setText(String.valueOf(modelCursoMateria.getHorario_fim()));
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro ao editar o Curso!", "Erro ao Editar um Curso!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-    }//GEN-LAST:event_BotaoEditarActionPerformed
-
-    public void limparFormulario() {
-        CampoCodigo.setText("");
-        CampoCurso.setText("");
-        CampoMateria.setText("");
-        CampoSemestre.setText("");
-        CampoAno.setText("");
-        CampoPeriodo.setText("");
-        CampoCargaHoraria.setText("");
-        CampoHorarioInicio.setText("");
-        CampoHorarioFim.setText("");
-        String alterarCadastrar = "cadastrar";
-    }
-
-    
-    /**
-     * Carrega uma Lista de Matéria do Banco
-     */
-    private void carregarMaterias() {
-        listaMateria = materiaController.listarMateriaController();
-
-        DefaultTableModel tabelaMateria = (DefaultTableModel) TabelaMateria.getModel();
-        tabelaMateria.setNumRows(0);
-
-        for (int i = 0; i < listaMateria.size(); i++) {
-            tabelaMateria.addRow(new Object[]{
-                listaMateria.get(i).getId(),
-                listaMateria.get(i).getNome_curso(),
-                listaMateria.get(i).getNome_materia(),
-                listaMateria.get(i).getSemestre(),
-                listaMateria.get(i).getAno(),
-                listaMateria.get(i).getPeriodo(),
-                listaMateria.get(i).getCarga_horaria(),
-                listaMateria.get(i).getHorario_inicio(),
-                listaMateria.get(i).getHorario_fim()
-            });
-        }
-    }
-
-    
     /**
      * @param args the command line arguments
      */
@@ -724,13 +599,13 @@ public class TelaMateria extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMateriaOld2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMateriaOld2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMateriaOld2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMateriaOld2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -864,7 +739,7 @@ public class TelaMateria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaMateria().setVisible(true);
+                new TelaMateriaOld2().setVisible(true);
             }
         });
     }
@@ -879,12 +754,12 @@ public class TelaMateria extends javax.swing.JFrame {
     private javax.swing.JLabel BotaoVoltar;
     private javax.swing.JTextField CampoAno;
     private javax.swing.JTextField CampoCargaHoraria;
-    private javax.swing.JTextField CampoCodigo;
+    private javax.swing.JTextField CampoCargaHoraria1;
+    private javax.swing.JTextField CampoCargaHoraria2;
     private javax.swing.JTextField CampoCurso;
-    private javax.swing.JTextField CampoHorarioFim;
-    private javax.swing.JTextField CampoHorarioInicio;
     private javax.swing.JTextField CampoMateria;
     private javax.swing.JTextField CampoPeriodo;
+    private javax.swing.JTextField CampoProfessor;
     private javax.swing.JTextField CampoSemestre;
     private javax.swing.JTextField CampoUsuarioTelaLogin3;
     private javax.swing.JPanel PainelPrincipal;
@@ -892,24 +767,26 @@ public class TelaMateria extends javax.swing.JFrame {
     private javax.swing.JPanel PainelTela;
     private javax.swing.JPanel PainelTela1;
     private javax.swing.JTable TabelaMateria;
+    private javax.swing.JTable TabelaProfessor;
     private javax.swing.JLabel TituloCargaHoraria;
     private javax.swing.JLabel TituloCargaHoraria1;
     private javax.swing.JLabel TituloCargaHoraria2;
-    private javax.swing.JLabel TituloCodigo;
     private javax.swing.JLabel TituloCurso;
     private javax.swing.JLabel TituloCurso5;
     private javax.swing.JLabel TituloMateria;
     private javax.swing.JLabel TituloPeriodo;
+    private javax.swing.JLabel TituloProfessor;
     private javax.swing.JLabel TituloSemestre;
     private javax.swing.JLabel imagemLogoBrancaTelaInicial;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator20;
-    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel subtituloEmpresaTelaInicial;
