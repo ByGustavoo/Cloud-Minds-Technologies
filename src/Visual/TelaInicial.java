@@ -116,6 +116,12 @@ public class TelaInicial extends javax.swing.JFrame {
         PainelGrade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 51, 255), 3, true));
 
         imagemGrade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/imagemGradeCurricular.png"))); // NOI18N
+        imagemGrade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imagemGrade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imagemGradeMouseClicked(evt);
+            }
+        });
 
         textoImagemGradeCurricular.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         textoImagemGradeCurricular.setForeground(new java.awt.Color(153, 51, 255));
@@ -285,6 +291,11 @@ public class TelaInicial extends javax.swing.JFrame {
         new TelaGestao().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_imagemGestaoMouseClicked
+
+    private void imagemGradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imagemGradeMouseClicked
+        new TelaGradeCurricular().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_imagemGradeMouseClicked
 
     /**
      * @param args the command line arguments
