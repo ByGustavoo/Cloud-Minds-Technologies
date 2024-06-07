@@ -4,13 +4,22 @@
  */
 package Visual;
 
-import Old.TelaMateriaOld2;
+import Controller.GradeCurricularController;
+import Model.ModelProfessorMateria;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author gustavo
  */
 public class TelaGradeCurricular extends javax.swing.JFrame {
+    
+    ModelProfessorMateria modelProfessorMateria = new ModelProfessorMateria();
+    GradeCurricularController gradeCurricularController = new  GradeCurricularController();
+    List<ModelProfessorMateria> listarGrade = new ArrayList<>();
+    
 
     /**
      * Creates new form TelaInicialTeste
@@ -18,6 +27,7 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
     public TelaGradeCurricular() {
         initComponents();
         setLocationRelativeTo(null);
+        listarGradeCurricular();
     }
 
     /**
@@ -34,7 +44,7 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
         PainelRoxoParteCima = new javax.swing.JPanel();
         imagemLogoBrancaTelaInicial = new javax.swing.JLabel();
         subtituloEmpresaTelaInicial = new javax.swing.JLabel();
-        botaoSairTelaInicial = new javax.swing.JLabel();
+        botaoSair = new javax.swing.JLabel();
         BotaoVoltar = new javax.swing.JLabel();
         textoNomeEmpresaTelaInicial1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -60,11 +70,11 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
         subtituloEmpresaTelaInicial.setForeground(new java.awt.Color(204, 204, 204));
         subtituloEmpresaTelaInicial.setText("Construindo pontes para o futuro digital");
 
-        botaoSairTelaInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ImagemBotaoFechar.png"))); // NOI18N
-        botaoSairTelaInicial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botaoSairTelaInicial.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ImagemBotaoFechar.png"))); // NOI18N
+        botaoSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoSairTelaInicialMouseClicked(evt);
+                botaoSairMouseClicked(evt);
             }
         });
 
@@ -89,12 +99,12 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
                 .addComponent(BotaoVoltar)
                 .addGap(41, 41, 41)
                 .addComponent(imagemLogoBrancaTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelRoxoParteCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelRoxoParteCimaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoSairTelaInicial))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botaoSair))
                     .addGroup(PainelRoxoParteCimaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(subtituloEmpresaTelaInicial)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -116,7 +126,7 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
                         .addGroup(PainelRoxoParteCimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BotaoVoltar)
                             .addGroup(PainelRoxoParteCimaLayout.createSequentialGroup()
-                                .addComponent(botaoSairTelaInicial)
+                                .addComponent(botaoSair)
                                 .addGap(56, 56, 56)
                                 .addComponent(subtituloEmpresaTelaInicial)))))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -151,6 +161,15 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
             TabelaGradeCurricular.getColumnModel().getColumn(0).setMinWidth(80);
             TabelaGradeCurricular.getColumnModel().getColumn(0).setPreferredWidth(80);
             TabelaGradeCurricular.getColumnModel().getColumn(0).setMaxWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(1).setMinWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(1).setPreferredWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(1).setMaxWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(6).setMinWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(6).setPreferredWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(6).setMaxWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(7).setMinWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(7).setPreferredWidth(80);
+            TabelaGradeCurricular.getColumnModel().getColumn(7).setMaxWidth(80);
             TabelaGradeCurricular.getColumnModel().getColumn(8).setMinWidth(80);
             TabelaGradeCurricular.getColumnModel().getColumn(8).setPreferredWidth(80);
             TabelaGradeCurricular.getColumnModel().getColumn(8).setMaxWidth(80);
@@ -220,15 +239,43 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoSairTelaInicialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoSairTelaInicialMouseClicked
+    private void botaoSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoSairMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_botaoSairTelaInicialMouseClicked
+    }//GEN-LAST:event_botaoSairMouseClicked
 
     private void BotaoVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotaoVoltarMouseClicked
         new TelaInicial().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BotaoVoltarMouseClicked
 
+    /**
+     * Carrega uma Lista da Grade Curricular
+     */
+    private void listarGradeCurricular() {
+        listarGrade = gradeCurricularController.listaGradeCurricularController();
+        
+        DefaultTableModel modeloTabela = (DefaultTableModel) TabelaGradeCurricular.getModel();
+        
+        modeloTabela.setNumRows(0);
+        
+       for (int i = 0; i < listarGrade.size(); i++) {
+            modeloTabela.addRow(new Object[]{
+                listarGrade.get(i).getFuncionario().getId(),
+                listarGrade.get(i).getFuncionario().getNome(),
+                listarGrade.get(i).getCursoMateria().getNome_curso(),
+                listarGrade.get(i).getCursoMateria().getNome_materia(),
+                listarGrade.get(i).getCursoMateria().getPeriodo(),
+                listarGrade.get(i).getCursoMateria().getCarga_horaria(),
+                listarGrade.get(i).getCursoMateria().getHorario_inicio(),
+                listarGrade.get(i).getCursoMateria().getHorario_fim(),
+                listarGrade.get(i).getCursoMateria().getSemestre(),
+                listarGrade.get(i).getCursoMateria().getAno()
+            });
+        }
+    }
+
+      
+                
     /**
      * @param args the command line arguments
      */
@@ -274,7 +321,7 @@ public class TelaGradeCurricular extends javax.swing.JFrame {
     private javax.swing.JPanel PainelRoxoParteCima;
     private javax.swing.JPanel PainelTela;
     private javax.swing.JTable TabelaGradeCurricular;
-    private javax.swing.JLabel botaoSairTelaInicial;
+    private javax.swing.JLabel botaoSair;
     private javax.swing.JLabel imagemLogoBrancaTelaInicial;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel subtituloEmpresaTelaInicial;
