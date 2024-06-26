@@ -4,6 +4,9 @@
 ## 🔹 Projeto Integrador I
 
 
+![image](https://github.com/ByGustavoo/Cloud-Minds-Technologies/assets/132701636/28f61a72-7809-4117-bdae-afc8e79c614a)
+
+
 ## 🚀 Ferramentas utilizadas:
 
 
