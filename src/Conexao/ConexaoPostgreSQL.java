@@ -26,9 +26,9 @@ public class ConexaoPostgreSQL {
     public boolean conectar() {
 
         try {
-            String url = "jdbc:postgresql://localhost:5432/postgres";
-            String usuario = "postgres";
-            String senha = "postgres";
+            String url = "jdbc:postgresql:// '' : '' / '' ";
+            String usuario = "";
+            String senha = "";
 
             this.conexao = DriverManager.getConnection(url, usuario, senha);
 
